@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理博客</title>
+    <link rel="stylesheet" href="../../static/blog/management/css/bootstrap.min.css">
+    <script src="../../static/blog/management/js/jquery.min.js"></script>
+    <script src="../../static/blog/management/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../static/blog/management/css/management.css">
+    <script src="../../static/tools/js/settings.js"></script>
+    <script src="../../static/blog/management/js/sweetalert2.js"></script>
+    <link rel="stylesheet" href="../../static/blog/management/css/sweetalert2.min.css">
+    <script src="../../static/tools/js/tools.js"></script>
+
+</head>
+<body>
+<nav>
+    <div class="d_top">
+        <div class="d_right">
+            <div class="right_top">
+                <div class="btn-group btn_list" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" id="quanbu">全部<i class="all">0</i></button>
+                    <button type="button" class="btn btn-default" id="gongkai">公开<i class="all">0</i></button>
+                    <button type="button" class="btn btn-default" id="simi">私密<i class="all">0</i></button>
+                    <button type="button" class="btn btn-default" id="caogao">草稿箱<i class="all">0</i></button>
+                    <button type="button" class="btn btn-default" id="huishou">回收站<i class="all">0</i></button>
+                </div>
+            </div>
+            <div class="d_screening">
+                <div class="d1">
+                    筛选：
+                    <select name="year-select">
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+                    <span>年</span>
+                    <select name="mouth-select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span>月</span>
+                </div>
+                <div class="d3">
+                    <select name="article-type">
+                        <option value="1">文章类型</option>
+                        <option value="2">不限类型</option>
+                        <option value="3">原创</option>
+                        <option value="4">转载</option>
+                        <option value="5">翻译</option>
+                    </select>
+                </div>
+                <div class="d4">
+                    <select name="classification">
+                        <option value="1">分类专栏</option>
+                        <option value="2">不限</option>
+                    </select>
+                </div>
+                <div class="d5">
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input id="shuru" type="text" class="form-control" placeholder="请输入关键字">
+                        </div>
+                        <button type="submit" class="btn-sosuo btn-default">搜索🔍</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="father">
+                <div class="edit">快来发布第一篇博客吧!</div>
+            </div>
+        </div>
+        <a href="../blog/forms.html">
+            <button type="button" class="btn-editor btn btn-default btn1  edit">
+                富文本编辑器
+            </button>
+        </a>
+    </div>
+    <div class="navigation">
+        <div class="btn-group">
+            <p class="home_page">
+                <button id="btn_page" type="button" class="btn-lg btn btn-link glyphicon glyphicon-home">
+                    <a>首页</a>
+                </button>
+            </p>
+            <button id="btn_blog" type="button"
+                    class="btn btn-default btn-lg dropdown-toggle glyphicon glyphicon-list-alt"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                博客管理 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">文章管理</a></li>
+                <li><a href="#">评论管理</a></li>
+                <li><a href="#">博客设置</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">分类专栏</a></li>
+                <li><a href="#">订阅专栏</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script>
+    check_login()
+    $.ajax({
+        url: USERURL + localStorage.getItem('pymara_uid') + '/blog_info/',
+        type: 'GET',
+        datatype: 'json',
+        beforeSend: function (request) {
+            request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+        },
+        success: function (res) {
+            if (res.code === 200) {
+                if (res.data) {
+                    $(".father").html('')
+                    for (var i = 0; i < res.data.length; i++) {
+                        html = '<div class="article-list-item-mp blog_id_' + res.data[i].id + ' is_show_' + res.data[i].is_show + ' status_' + res.data[i].status + '" >\n' +
+                            '                        <div class="list-item-title">\n' +
+                            '                            <p class="article-list-item-txt ">\n' +
+                            '                                <a href="" target="_blank" title="编辑">' + res.data[i].title + '</a>\n' +
+                            '                            </p>\n' +
+                            '                        </div>\n' +
+                            '                        <div class="article-list-item-info">\n' +
+                            '                            <div class="item-info-left">\n' +
+                            '                                <span>原创</span>\n' +
+                            '                                <span class="time">' + res.data[i].create_time + '</span>\n' +
+                            '                                <span class="article-list-item-read">\n' +
+                            '                                <p class="glyphicon glyphicon-book" title="阅读量">' + res.data[i].browse + '</p></span>\n' +
+                            '                                <span class="article-list-item-comments">\n' +
+                            '                                <p class="glyphicon glyphicon-comment" title="评论">' + res.data[i].comment + '</p></span>\n' +
+                            '                                <span class="article-list-item-collection">\n' +
+                            '                                <p class="give-a-like glyphicon glyphicon-thumbs-up" title="点赞">' + res.data[i].favorite + '</p></span>\n' +
+                            '                            </div>\n' +
+                            '                            <div class="item-info-oper">\n' +
+                            '                                <a href="" target="_blank" class="item-info-oper-text">\n' +
+                            '                                    <span>查看</span>\n' +
+                            '                                </a>\n' +
+                            '                                <a href="">\n' +
+                            '                                    <span class="setTop">置顶</span>\n' +
+                            '                                </a>\n' +
+                            '                                <a href="javascript:void(0)" id="' + parseInt(res.data[i].id) + '" class="del-blog item-right-border">\n' +
+                            '                                    删除' +
+                            '                                </a>\n' +
+                            '                            </div>\n' +
+                            '                        </div>\n' +
+                            '                    </div>'
+
+                        $(".father").append(html)
+                        if (res.data[i].status === '2') {
+                            $('.blog_id_' + res.data[i].id).hide()
+                        }
+                        if (res.data[i].status === '3') {
+                            $('.blog_id_' + res.data[i].id).hide()
+                        }
+                    }
+                }
+                $('#huishou>i').html($('.status_3').length)
+                $('#gongkai>i').html($('.is_show_1.status_1').length)
+                $('#simi>i').html($('.is_show_0.status_1').length)
+                $('#quanbu>i').html($('.is_show_1.status_1,.is_show_2.status_1').length)
+                $('#caogao>i').html($('.status_2').length)
+            } else if (res.code === 403) {
+                tools()
+            }
+        }
+    })
+
+</script>
+<script>
+    $('.father').on('click', '.del-blog', function () {
+        blog_id = $(this).attr('id')
+        swal({
+            title: '确定删除吗？',
+            text: '你将无法恢复它！',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '确定删除！',
+        }).then(function () {
+            $.ajax({
+                url: USERURL + localStorage.getItem('pymara_uid') + '/blog_info/',
+                type: 'patch',
+                data: JSON.stringify({'blog_id': blog_id}),
+                beforeSend: function (request) {
+                    request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+                },
+                success: function (res) {
+                    if (res.code === 200) {
+                        $('.blog_id_' + blog_id).hide()
+                        swal(
+                            '删除！',
+                            '你的文件已经被删除。',
+                            'success'
+                        );
+                    }
+                }
+            })
+        })
+    })
+</script>
+<script>
+    $(".father").on('click', '.give-a-like', function () {
+        console.log('---')
+        if ($(this).hasClass('red')) {
+            $(this).removeClass('red')
+            $(this).text(parseInt($(this).text()) - 1)
+        } else {
+            $(this).addClass("red")
+            $(this).text(parseInt($(this).text()) + 1)
+        }
+    })
+</script>
+<script>
+
+    $('#quanbu').on('click', function () {
+        $('.article-list-item-mp').hide()
+        $('.is_show_1.status_1,.is_show_0.status_1').show()
+    })
+    $('#gongkai').on('click', function () {
+        $('.article-list-item-mp').hide()
+        $('.is_show_1.status_1').show()
+    })
+    $('#simi').on('click', function () {
+        console.log('xxx')
+        $('.article-list-item-mp').hide()
+        // $('.is_show_1').show()
+        $('.is_show_0.status_1').show()
+    })
+    $('#caogao').on('click', function () {
+        $('.article-list-item-mp').hide()
+        // $('.is_show_0').show()
+        // $('.status_1').show()
+        $('.status_2').show()
+    })
+    $('#huishou').on('click', function () {
+            $('.article-list-item-mp').hide()
+            // $('.is_show_1').show()
+            // $('.is_show_0').show()
+            $('.status_3').show()
+        }
+    )
+    $('.edit').on('click', function () {
+        //编辑页面
+        location.href = BLOGHREF+'forms.html'
+    })
+    $('.home_page').on('click', function () {
+        location.href = htmlUrl + 'pymara/templates/index.html'
+    })
+</script>
+</body>
+</html>

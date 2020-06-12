@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>个人信息</title>
+
+    <link rel="shortcut icon" href="../../static/user/user/img/ico/login.ico">
+    <link rel="stylesheet" href="../../static/tools/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/person/css/person_info.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+
+    <script src="../../static/tools/js/jquery.min.js"></script>
+    <script src="../../static/tools/js/bootstrap.min.js"></script>
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <script src="../../static/tools/js/settings.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default header-font-size">
+        <div class="container-fluid header-box">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span></button>
+                <img src="../../static/index/img/jpg/logo.jpg" alt="Logo">
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navigation-bar-ul">
+                    <!-- 导航栏标签 -->
+                    <li class="hover-bg-color-change">
+                        <a href="../index.html">首页</a>
+                    </li>
+
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>
+
+<!--页面主体最大容器-->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left-box-DIV">
+            <div class="left-click-box">
+                <div id="my-info-DIV" class="active">个人资料</div>
+                <div id="my-collect-DIV">我的收藏</div>
+                <div id="my-Concern-DIV">我的关注</div>
+                <div id="my-fans-DIV">我的粉丝</div>
+                <div id="my-blogs-DIV">我的博客</div>
+            </div>
+        </div>
+
+        <!--用户主体-->
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 right-box-DIV">
+
+            <div id="one-myself-info">
+
+                <table>
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="title-TD">个人资料</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="width-15">
+                            <img src="../../static/index/img/head/h-04.jpg" class="img-circle img-responsive" alt="">
+                            <span class="click-font">修改头像</span>
+                        </td>
+                        <td class="width-70">
+                            <div class="gray-font">
+                                <span style="margin-right: 15px">ID:</span>
+                                <span id="username-SPAN"></span>
+                            </div>
+                            <div style="font-size: 15px; margin-top: 20px">
+                                <span style="margin-right: 10px">关注:</span><span id="Concern-SPAN"
+                                                                                 style="margin-right: 40px">55</span>
+                                <span style="margin-right: 10px">粉丝:</span><span id="fans-SPAN">66</span>
+                            </div>
+                        </td>
+                        <td class="width-15">
+                            <span class="click-font">个人主页>></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td class="person-info-box">
+
+                            <div id="show-info-box-DIV">
+                                <div>
+                                    <span>昵称:</span>
+                                    <span id="show-nickname-SPAN"></span>
+                                </div>
+                                <div>
+                                    <span>姓名:</span>
+                                    <span id="show-name-SPAN"></span>
+                                </div>
+                                <div>
+                                    <span>性别:</span>
+                                    <span id="show-gender-SPAN"></span>
+                                </div>
+                                <div>
+                                    <span>年龄:</span>
+                                    <span id="show-age-SPAN"></span>
+                                </div>
+                                <div>
+                                    <span>生日:</span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <div id="write-info-box-DIV">
+                                <table class="font-22px">
+                                    <tr>
+                                        <td>昵称:</td>
+                                        <td>
+                                            <input id="nickname-INPUT" type="text" maxlength="14">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>姓名:</td>
+                                        <td>
+                                            <input id="name-INPUT" type="text" maxlength="4">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>性别:</td>
+                                        <td>
+                                            <select id="gender-INPUT" name="gender-select">
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                                <option value="保密">保密</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>年龄:</td>
+                                        <td>
+                                            <input id="age-INPUT" type="text" maxlength="3">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>生日:</td>
+                                        <td>
+                                            <select name="year-select">
+                                                <option value=""></option>
+                                                <option value="2000">2000</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2004">2004</option>
+                                            </select><span>年</span>
+                                            <select name="year-select">
+                                                <option value=""></option>
+                                                <option value="2000">1</option>
+                                                <option value="2001">2</option>
+                                                <option value="2002">3</option>
+                                                <option value="2003">4</option>
+                                                <option value="2004">5</option>
+                                            </select><span>月</span>
+                                            <select name="year-select">
+                                                <option value=""></option>
+                                                <option value="2000">1</option>
+                                                <option value="2001">2</option>
+                                                <option value="2002">3</option>
+                                                <option value="2003">4</option>
+                                                <option value="2004">5</option>
+                                            </select><span>日</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td class="info-btn-TD">
+                                            <button id="save-BUTTON" type="button" class="btn btn-primary">保&nbsp;&nbsp;存</button>
+                                            <button id="cancel-BUTTON" type="button" class="btn btn-danger">取&nbsp;&nbsp;消</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </td>
+                        <td valign="top">
+                            <span id="write-SPAN" class="click-font">修改资料</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="two-myself-collect">
+                <table>
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="title-TD">我的收藏</td>
+
+                    </tr>
+                    <tr>
+                        <td class="font-20px">
+                            您暂时还没有收藏!
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="three-myself-Concern">
+                <table>
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="title-TD">我的关注</td>
+                    </tr>
+                    <tr>
+                        <td class="font-20px">
+                            您暂时还没有关注!
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="four-myself-fans">
+                <table>
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="title-TD">我的粉丝</td>
+                    </tr>
+                    <tr>
+                        <td class="font-20px">
+                            您的粉丝正在来的路上!
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="five-myself-blogs">
+                <table>
+                    <tr style="border-bottom: 2px solid black">
+                        <td class="title-TD">我的博客</td>
+                    </tr>
+                    <tr>
+                        <td class="font-20px">
+                            您的博客数据正在生成中......
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><!--页面主体最大容器-->
+<script>
+    user_id = localStorage.getItem('pymara_uid')
+    // 获取用户信息
+    $(function () {
+        $.ajax({
+            url: baseUrl + "v1/user/details/" + user_id + "/user_info",
+            type: "get",
+            dataType: "json",
+            success: function (res) {
+                if (res.code === 200) {
+                    var da = res.data;
+                    $("#username-SPAN").html(da.nickname);
+                    $("#show-nickname-SPAN").html(da.nickname);
+                    $("#show-name-SPAN").html(da.name);
+                    $("#show-gender-SPAN").html(da.gender);
+                    $("#show-age-SPAN").html(da.age);
+                } else {
+                    swal("获取用户信息", "再试一次吧!", "error");
+                }
+            },
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+            }
+        })
+    })
+</script>
+
+
+<script>
+
+    $("#write-info-box-DIV").hide();
+
+    $("#one-myself-info").show();
+    $("#two-myself-collect").hide();
+    $("#three-myself-Concern").hide();
+    $("#four-myself-fans").hide();
+    $("#five-myself-blogs").hide();
+
+    $(function () {
+        // 左侧分类导航栏选中状态切换
+        $(".left-click-box>div").on("click", function () {
+            $(".left-click-box>div").prop("className", "");
+            $(this).prop("className", "active");
+        })
+    });
+
+    $("#my-info-DIV").on("click", function () {
+        $("#one-myself-info").show();
+        $(".right-box-DIV>div:not(#one-myself-info)").hide();
+    });
+
+    $("#my-collect-DIV").on("click", function () {
+        $("#two-myself-collect").show();
+        $(".right-box-DIV>div:not(#two-myself-collect)").hide();
+    });
+
+    $("#my-Concern-DIV").on("click", function () {
+        $("#three-myself-Concern").show();
+        $(".right-box-DIV>div:not(#three-myself-Concern)").hide();
+    });
+
+    $("#my-fans-DIV").on("click", function () {
+        $("#four-myself-fans").show();
+        $(".right-box-DIV>div:not(#four-myself-fans)").hide();
+    });
+
+    $("#my-blogs-DIV").on("click", function () {
+        $("#five-myself-blogs").show();
+        $(".right-box-DIV>div:not(#five-myself-blogs)").hide();
+    });
+
+    $("#write-SPAN").on("click", function () {
+        $("#show-info-box-DIV").hide();
+        $("#write-info-box-DIV").show();
+    });
+
+    $("#cancel-BUTTON").on("click", function () {
+        $("#show-info-box-DIV").show();
+        $("#write-info-box-DIV").hide();
+    });
+    $("#save-BUTTON").on("click", function () {
+        var nickname = $("#nickname-INPUT").val();
+        var name = $("#name-INPUT").val();
+        var gender = $("#gender-INPUT").val();
+        var age = $("#age-INPUT").val();
+
+        var data = {"nickname": nickname, "name": name, "gender": gender, "age": age};
+        user_id = localStorage.getItem('pymara_uid')
+        $.ajax({
+            url: baseUrl + "v1/user/details/" + user_id + "/user_info",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: function (res) {
+                if (res.code === 200) {
+                    var da = res.data;
+                    $("#username-SPAN").html(da.nickname);
+                    $("#show-nickname-SPAN").html(da.nickname);
+                    $("#show-name-SPAN").html(da.name);
+                    $("#show-gender-SPAN").html(da.gender);
+                    $("#show-age-SPAN").html(da.age);
+                    swal("保存成功", "", "success");
+                    $("#show-info-box-DIV").show();
+                    $("#write-info-box-DIV").hide();
+                } else {
+                    swal("保存失败", "再试一次吧!", "error");
+                }
+            },
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+            }
+        })
+    });
+
+</script>
+
+</body>
+</html>

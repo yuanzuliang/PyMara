@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PyMara登录</title>
+
+    <link rel="shortcut icon" href="../../static/user/user/img/ico/login.ico">
+    <link rel="stylesheet" href="../../static/tools/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/user/user/css/login.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+    <script src="../../static/tools/js/jquery.min.js"></script>
+    <script src="../../static/tools/js/bootstrap.min.js"></script>
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <script src="../../static/tools/js/settings.js"></script>
+
+<!--    <style>-->
+<!--        body{-->
+<!--            background-image: url("../../static/user/img/background_img/01.jpg");-->
+<!--            background-size: 100%;-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default header-font-size">
+            <div class="container-fluid header-box">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <img src="../../static/index/img/jpg/logo.jpg" alt="Logo">
+                </div>
+
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navigation-bar-ul">
+                        <!-- 导航栏标签 -->
+                        <li class="hover-bg-color-change">
+                            <a href="../index.html">首页</a>
+                        </li>
+
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+
+    <!--页面主体最大容器-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6"></div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 login-box">
+
+                <table class="login-input-table">
+                    <tr>
+                        <td>
+                            <img id="psd-img" src="../../static/user/user/img/png/psd_img.png" alt="">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="phone"></label><input id="phone" type="text" placeholder="手机号" maxlength="11">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="psd-box-TD">
+                            <label for="psd"></label><input id="psd" type="password" placeholder="密码" maxlength="16">
+                            <i id="showPsd" class="glyphicon glyphicon-eye-close"></i>
+                            <div id="error-show-div"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <button id="login-btn" class="btn btn-primary login-input-ele">登&nbsp;&nbsp;录</button>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <div class="app-img-box">
+                                <span id="weixin-login">
+                                    <img src="../../static/user/user/img/jpg/app1.jpg" alt="">
+                                </span>
+                                <span id="qq-login">
+                                    <img src="../../static/user/user/img/jpg/app2.jpg" alt="">
+                                </span>
+                                <span id="weibo-login">
+                                    <img src="../../static/user/user/img/jpg/app3.jpg" alt="">
+                                </span>
+                                |<a href="register.html">免费注册</a>|<a href="retrieve.html">忘记密码</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 页面背景和猫头鹰 -->
+    <script>
+        $(function () {
+            // 猫头鹰图片
+            $("#psd").focus(function () {
+                $("#psd-img").prop("src", "../../static/user/img/png/_psd_img.png")
+            }).blur(function () {
+                $("#psd-img").prop("src", "../../static/user/img/png/psd_img.png")
+            });
+
+            // 切换背景
+            var imgNum = 0;
+            var bgImg = ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg", "07.jpg", "08.jpg", "09.jpg", "10.jpg", "11.jpg"];
+            var bgUrlStart = "url('../../static/user/user/img/background_img/";
+            var bgUrlEnd = "')";
+            (function () {
+                imgNum = Math.floor(Math.random() * 11);
+                document.body.style.background = bgUrlStart + bgImg[imgNum] + bgUrlEnd;
+                document.body.style.backgroundSize = "100%";
+            })();
+
+            $("#psd-img").click(function () {
+                imgNum++;
+                if(imgNum > 10){
+                    imgNum = 0;
+                }
+                document.body.style.background = bgUrlStart + bgImg[imgNum] + bgUrlEnd;
+                document.body.style.backgroundSize = "100%";
+            });
+
+            // 密码框小眼睛
+            var showPsdI = 0;
+            $("#showPsd").on("click", function () {
+                if(showPsdI===0){
+                    $(this).prop("className", "glyphicon glyphicon-eye-open");
+                    $("#psd").prop("type", "text");
+                    showPsdI++;
+                }else{
+                    $(this).prop("className", "glyphicon glyphicon-eye-close");
+                    $("#psd").prop("type", "password");
+                    showPsdI--;
+                }
+            })
+        });
+    </script>
+
+    <!-- 登录验证 -->
+    <script>
+        // 登录验证
+        function judgeLogin(phone_input, psd_input, error_text, str1, str2){
+            phone_input.prop("className", str1);
+            psd_input.prop("className", str1);
+            error_text.html(str2);
+        }
+
+        $("#login-btn").click(function () {
+            var phone1 = $("#phone").val();
+            var psd2 = $("#psd").val();
+
+            var re1 = /1[0-9]{10}/g;
+            var re2 = /[0-9a-zA-Z_]{8,16}/g;
+            var re3 = /[^0-9a-zA-Z_]+/g;
+
+            var res1 = re1.test(phone1);
+            var res2 = re2.test(psd2);
+            var res3 = re3.test(psd2);
+
+            if (res1 && res2 && !res3){
+                console.log(phone1, psd2);
+                judgeLogin($("#phone"), $("#psd"), $("#error-show-div"), "", "");
+
+                // 发送请求到服务器登录
+                $.ajax({
+                    url: baseUrl + "v1/logreg/login",
+                    type: "post",
+                    dataType: "json",
+                    data: JSON.stringify({"phone_number": phone1, "password": psd2}),
+                    success: function (res) {
+                        // $("#login-btn").removeAttr("disabled");
+                        $("#login-btn").prop("disabled", false);
+                        if(res.code===200){
+                            window.localStorage.clear();
+                            window.localStorage.setItem('pymara_token', res.data);
+                            window.localStorage.setItem('pymara_uid', res.id);
+                            window.localStorage.setItem('pymara_uname', res.uname);
+                            window.localStorage.setItem('pymara_uphone', res.phone);
+
+                            location.href = htmlUrl + "pymara/templates/index.html";
+                        }else{
+                            judgeLogin($("#phone"), $("#psd"), $("#error-show-div"), "error-input", "用户名或密码有误");
+                            console.log(res.code, res.error);
+                        }
+                    },
+                });
+                $("#login-btn").prop("disabled", true)
+            }else{
+                judgeLogin($("#phone"), $("#psd"), $("#error-show-div"), "error-input", "用户名或密码格式错误");
+            }
+
+        });
+
+    </script>
+
+    <!-- 第三方登录平台 -->
+    <script>
+        $("#weixin-login").on("click", function () {
+            swal({
+                title: '微信暂时用不了哦!',
+                text: '用微博试试吧',
+                timer: 2000
+            })
+        });
+
+        $("#qq-login").on("click", function () {
+            swal({
+                title: 'QQ暂时用不了哦!',
+                text: '用微博试试吧',
+                timer: 2000
+            })
+        });
+
+        $("#weibo-login").on("click", function () {
+            $.ajax({
+                url: baseUrl + "v1/logreg/weibo/login",
+                type: "get",
+                dataType: "json",
+                success: function (res) {
+                    if(res.code===200){
+                        window.location.href = res.data;
+                    }else{
+                        swal("遇到了一点小问题哦！", "再点一次试试吧", "error")
+                    }
+                }
+            })
+        })
+    </script>
+
+</body>
+</html>

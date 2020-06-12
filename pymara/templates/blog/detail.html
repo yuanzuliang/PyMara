@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博客详情</title>
+    <script src="../../static/tools/js/settings.js"></script>
+    <script src="../../static/tools/js/jquery.min.js"></script>
+    <script src="../../static/tools/js/bootstrap.min.js"></script>
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <script src="../../static/tools/js/tools.js"></script>
+    <link rel="stylesheet" href="../../static/tools/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../static/blog/details/css/detail.css">
+    <script src='../../static/blog/mdeditor/js/editormd.min.js'></script>
+
+    <script src='../../static/blog/mdeditor/js/editormd.min.js'></script>
+    <script src='../../static/blog/mdeditor/js/lib/marked.min.js'></script>
+    <script src='../../static/blog/mdeditor/js/lib/prettify.min.js'></script>
+    <script src='../../static/blog/mdeditor/js/lib/raphael.min.js'></script>
+    <script src='../../static/blog/mdeditor/js/lib/underscore.min.js'></script>
+    <script src='../../static/blog/mdeditor/js/lib/sequence-diagram.min.js'></script>
+    <script src='../../static/blog/mdeditor/js/lib/flowchart.min.js'></script>
+    <script src='../../static/blog/mdeditor/js/lib/jquery.flowchart.min.js'></script>
+</head>
+<body>
+<img src="../../static/img/back/back_0.png" class="backimg">
+<a href="#post_comment"><img src="../../static/img/log/message.jpg" class="message img-circle"></a>
+<div class="container-fluid">
+    <header>
+        <nav class="navbar navbar-default header-font-size navbar-fixed-top">
+            <div class="container-fluid header-box">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <img id="pymara-logo" src="../../static/index/img/jpg/logo.jpg" title="PyMara博客" alt="Logo">
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navigation-bar-ul">
+                        <!-- 导航栏标签 -->
+                        <!--
+                        <li class="hover-bg-color-change">
+                            <a href="#">首页</a>
+                        </li>导航栏标签 -->
+
+                        <li class="search-input-li">
+                            <!--　搜索框　-->
+                            <div class="input-group search-box">
+                                <input type="text" id="search-input" class="form-control navbar-btn"
+                                       placeholder="Search ...">
+                                <span class="input-group-btn">
+                                    <button id="search-btn" class="btn btn-default navbar-btn" type="button">&nbsp;搜&nbsp;索&nbsp;</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </li>
+
+                    </ul>
+                    <ul id="judge-login-no" class="nav navbar-nav navbar-right myself-UL">
+
+                        <li class="hover-bg-color-change"><a href="../user/login.html">登录</a></li>
+                        <li class="hover-bg-color-change"><a href="../user/register.html">注册</a></li>
+
+                        <li class="head-portrait-img-li">
+                            <img id="head-IMG" src="../../static/index/img/head/default.jpg" title="您还没有登录哦"
+                                 class="head-portrait-img" alt="头像">
+                        </li>
+                    </ul>
+
+                    <ul id="judge-login-ok" class="nav navbar-nav navbar-right myself-UL">
+
+                        <li class="dropdown">
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                <i class="glyphicon glyphicon-bell"></i><span class="badge pull-right"
+                                                                              id="total-num"></span>
+                            </a>
+                            <ul class="dropdown-menu myself-ul-font-size">
+                                <li>
+                                    <a href="#">
+                                        公告<span class="badge pull-right" id="gonggao-num">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        评论<span class="badge pull-right" id="pinglun-num">8</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        关注<span class="badge pull-right" id="guanzhu-num"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        点赞<span class="badge pull-right" id="dianzan-num"></span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        私信<span class="badge pull-right" id="sixin-num"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        系统通知<span class="badge pull-right" id="xitong-num">2</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="myself-a" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="glyphicon glyphicon-tower vip-logo-i"></i>&nbsp;&nbsp;我的<span
+                                    class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu myself-ul-font-size">
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;我的关注
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-star"></i>&nbsp;&nbsp;我的收藏
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../user/info.html">
+                                        <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;个人中心
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;账号设置
+                                    </a>
+                                </li>
+
+                                <li role="separator" class="divider"></li>
+
+                                <li>
+                                    <a href="../blog/forms.html">
+                                        <i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;创作博客
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../user/management.html">
+                                        <i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;管理博客
+                                    </a>
+                                </li>
+
+                                <li role="separator" class="divider"></li>
+
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;&nbsp;我的订单
+                                    </a>
+                                </li>
+
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-yen"></i>&nbsp;&nbsp;我的钱包
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-question-sign"></i>&nbsp;&nbsp;帮助
+                                    </a>
+                                </li>
+                                <li>
+                                    <div id='exit-login' class='myself-box-DIV'>
+                                        <i class="glyphicon glyphicon-log-out"></i>&nbsp;&nbsp;退出
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="head-portrait-img-li">
+                            <img id="head-IMG-2" src="../../static/index/img/head/h-06.jpg" class="head-portrait-img"
+                                 alt="头像">
+                        </li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+    <div class="box row" id="box">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 user_info">
+            <div class="user_info">
+                <table class="table">
+                    <tr>
+                        <td class="active avatar"><img src="" alt=""></td>
+                        <td class="active name">???</td>
+                    </tr>
+                    <tr>
+                        <td class="active">原创</td>
+                        <td class="active">访问</td>
+                        <td class="active">排名</td>
+                    </tr>
+                    <tr>
+                        <td class="active original">?</td>
+                        <td class="active browse">?</td>
+                        <td class="active rank">?</td>
+                    </tr>
+                </table>
+                <table class="table newblog">
+                    <tr>
+                        <td class="active ">最新博客</td>
+                    </tr>
+
+                </table>
+
+                <!-- 轮播图 -->
+                <div id="slideshow-img">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <a href="">
+                                    <img src="../../static/index/img/jpg/a-01.jpg" alt="...">
+                                </a>
+                                <div class="carousel-caption">
+                                    程序员的安静时光
+                                    <!-- 这里可以加提示文字　下同 -->
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <a href="">
+                                    <img src="../../static/index/img/jpg/a-02.jpg" alt="...">
+                                </a>
+                                <div class="carousel-caption">
+
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <a href="">
+                                    <img src="../../static/index/img/jpg/a-03.jpg" alt="...">
+                                </a>
+                                <div class="carousel-caption">
+
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <a href="">
+                                    <img src="../../static/index/img/jpg/a-04.jpg" alt="...">
+                                </a>
+                                <div class="carousel-caption">
+
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <a href="">
+                                    <img src="../../static/index/img/jpg/a-05.jpg" alt="...">
+                                </a>
+                                <div class="carousel-caption">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- 轮播图 -->
+            </div>
+        </div><!-- 左边个人信息阅读推荐 -->
+        <div class="col-md-6 blog_info">
+
+            <div class="blog_content">
+                <h3 class="blog_title"><i class="original_log">原创</i></h3>
+                <div class="blog_main" id="content">
+                </div>
+            </div>
+            <div class="tool_list">
+                <span class="blog_history">
+                    <i class="glyphicon glyphicon-thumbs-up praise_count">?</i>
+                    <i class="glyphicon glyphicon-eye-open browse_count">?</i>
+                    <i class="glyphicon glyphicon-comment comment_count">?</i>
+                    <i class="glyphicon glyphicon-heart favorite_count">?</i>
+                    <i class="glyphicon glyphicon-share share"></i>
+                </span>
+            </div>
+            <ul class="blog_comment">
+                <li class="post_comment" id="post_comment">
+                    <textarea class="form-control post_comment_input" rows="3" cols=""></textarea>
+                    <button class="btn btn-danger comment_btn post_comment_btn">评论</button>
+                    <button class="btn btn-warning del_post_child_comment_btn">取消回复</button>
+                </li>
+                <div class="hint">暂无评论</div>
+            </ul>
+
+        </div>
+        <div class="col-md-2 user_info"></div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+<!--导航栏消息数据获取并显示-->
+<script>
+    // 判断页面的span标签中是否有消息数量
+    function judgeNumber(str_num) {
+        if (str_num) {
+            return parseInt(str_num);
+        } else {
+            return 0
+        }
+    }
+
+    // 获取消息数总和
+    function getTotalNum() {
+        var gonggaoNum = judgeNumber($("#gonggao-num").html());
+        var pinglunNum = judgeNumber($("#pinglun-num").html());
+        var guanzhuNum = judgeNumber($("#guanzhu-num").html());
+        var dianzanNum = judgeNumber($("#dianzan-num").html());
+        var sixinNum = judgeNumber($("#sixin-num").html());
+        var xitongNum = judgeNumber($("#xitong-num").html());
+        var totalNum = gonggaoNum + pinglunNum + guanzhuNum + dianzanNum + sixinNum + xitongNum;
+        $("#total-num").html(totalNum);
+    }
+</script>
+
+<!-- 校验用户登录状态 -->
+<script>
+    $("#judge-login-no").show();
+    $("#judge-login-ok").hide();
+    // 用户退出
+    function userExitLogin() {
+        $("#exit-login").click(function () {
+            window.localStorage.clear();
+            $("#judge-login-no").show();
+            $("#judge-login-ok").hide();
+        })
+    }
+    $(function () {
+        $.ajax({
+            url: baseUrl + "v1/index/judge_login",
+            type: "post",
+            dataType: "json",
+            success: function (res) {
+                if (res.code === 200) {
+                    // swal(res.uname, "欢迎访问本网站", "success");
+                    $("#judge-login-no").hide();
+                    $("#judge-login-ok").show();
+                    $("#head-IMG-2").prop("title", res.uname);
+                    getTotalNum();
+                    userExitLogin();
+                } else if (res.code === 403) {
+                    $("#judge-login-no").show();
+                    $("#judge-login-ok").hide();
+                } else if (res.code === 444) {
+                    swal("您的账号被限制", "请联系工作人员", "error")
+                }
+            },
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+            }
+        })
+    })
+    function GetRequest() {
+        url = location.search; //获取url中"?"符后的字串
+        theRequest = Object();
+        if (url.indexOf("?") !== -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    function GetUserInfo(blog_id) {
+        $.ajax({
+            url: BLOGURL + 'details/' + blog_id + '/user_info',
+            type: 'get',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code === 200) {
+                    $('.avatar').html('<img src="../../media/avatar/' + res.data.avatar + '" class="img-circle" alt="">')
+                    $('.name').html('<a href="../user/detail.html?user_id=' + res.data.id + '">' + res.data.username + '</a>')
+                    $('.original').html(res.data.original)
+                    $('.browse').html(res.data.browse)
+                    $('.rank').html(res.data.rank)
+                    if (res.data.newblog.length === '0') {
+                        $('.newblog').append('<tr><td class="active">暂无</td></tr>')
+                    }
+                    $.each(res.data.newblog, function (index, obj) {
+                        $('.newblog').append('<tr><td class="active"><a href="' + BLOGHREF + "detail.html?blog_id=" + obj[0] + '">' + obj[1] + '</a></td></tr>')
+                    })
+                }else{
+                swal('',res.error,'error')
+            }
+            }
+        })
+    }
+
+    function GetContent() {
+        $.ajax({
+            url: BLOGURL + 'details/' + sessionStorage.getItem('detail_blog_id') + '/content',
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", localStorage.getItem("pymara_token"));
+            },
+            success: function (res) {
+                if (res.code === 200) {
+                    if (res.data.original === 1) {
+                        $('.original_log').show()
+                    }
+                    $('.blog_title').append(res.data.title)
+
+                    $('.praise_count').html(res.data.praise)
+                    if (res.data.praise_type) {
+                        $('.praise_count').addClass('blue_select')
+                    }
+
+                    $('.browse_count').html(res.data.browse)
+                    $('.favorite_count').html(res.data.favorite)
+                    $('.comment_count').html(res.data.comment)
+                    $('#content').html("<textarea>" + res.data.content + "</textarea>");
+                    editormd.markdownToHTML("content", {
+                        emoji: true,
+                        taskList: true,
+                        tex: true,  // 默认不解析
+                        flowChart: true,  // 默认不解析
+                        sequenceDiagram: true,  // 默认不解析
+                    });
+                } else {
+                    $('#content').html('<h1 style="text-align: center">404</h1><h2 style="text-align: center">你访问的博客不存在</h2>');
+                    swal('', '博客不存在', 'error')
+                    setTimeout(function () {
+                        location.href = HREF + 'index.html'
+                    }, 1000)
+                }
+            }
+        })
+    }
+
+    function GetComment() {
+        $.ajax({
+            url: BLOGURL + 'details/' + sessionStorage.getItem('detail_blog_id') + '/comment',
+            type: 'get',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code === 200) {
+                    if (res.data.comment_list.length > 0) {
+                        $('.hint').hide()
+                    }
+                    $.each(res.data.comment_list, function (index, obj) {
+                        html = '<li class="comment comment_id_' + obj.comment_id + '">\n' +
+                            '                    <div>\n' +
+                            '                        <a href="#" disabled="disabled">\n' +
+                            '                            <img class="img-circle"  src="../../media/avatar/' + obj.avatar + '" alt="">\n' +
+                            '                            <span>' + obj.user_name + '</span>\n' +
+                            '                            <span>' + obj.create_time + '</span>\n' +
+                            '                        </a>\n' +
+                            '                        <span class="post_comment_child user_id_' + obj.user_id + '"><a href="#post_comment">回复</a></span>\n' +
+                            '\n' +
+                            '                    </div>\n' +
+                            '                    <div class="comment_info">' + obj.info + '</div>\n' +
+                            '                </li>'
+                        $('.blog_comment').append(html)
+                        $.each(obj.child_comment, function (index, child_obj) {
+                            html = '                <div class="comment_child">\n' +
+                                '                    <div>\n' +
+                                '                        <a href="#">\n' +
+                                '                            <img class="img-circle"  src="../../media/avatar/' + child_obj.avatar + '" alt="">\n' +
+                                '                            <span>' + child_obj.user_name + '</span>\n' +
+                                '                        </a>\n' +
+                                '                        <a href="">\n' +
+                                '                            <span>回复</span>\n' +
+                                '                            <span>' + child_obj.to_user_name + '</span>\n' +
+                                '                            <span>' + child_obj.create_time + '</span>\n' +
+                                '                        </a>\n' +
+                                '                        <span class="post_comment_child user_id_' + child_obj.user_id + '"><a href="#post_comment">回复</a></span>\n' +
+                                '\n' +
+                                '                    </div>\n' +
+                                '                    <div class="comment_info">' + child_obj.info + '</div>\n' +
+                                '                </div>'
+                            $('.comment_id_' + obj.comment_id).append(html)
+                        })
+                    })
+                }else{
+                    swal('',res.error,'error')
+                }
+            }
+        })
+    }
+
+    function PostComment() {
+        $.ajax({
+            url: BLOGURL + 'details/' + sessionStorage.getItem('detail_blog_id') + '/comment',
+            type: 'post',
+            dataType: 'json',
+            data: JSON.stringify({
+                'type': 'text',
+                'comment_info': $('.post_comment_input').val(),
+            }),
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", localStorage.getItem("pymara_token"));
+            },
+            success: function (res) {
+                if (res.code === 200) {
+                    swal('', '发表评论成功', 'success')
+                    html = '<li class="comment comment_id_' + res.data.comment_id + '">\n' +
+                        '                    <div>\n' +
+                        '                        <a href="#" disabled="disabled">\n' +
+                        '                            <img class="img-circle"  src="../../media/avatar/' + res.data.avatar + '" alt="">\n' +
+                        '                            <span>' + res.data.user_name + '</span>\n' +
+                        '                            <span>' + res.data.create_time + '</span>\n' +
+                        '                        </a>\n' +
+                        '                        <span class="post_comment_child user_id_' + res.data.user_id + '">回复</span>\n' +
+                        '\n' +
+                        '                    </div>\n' +
+                        '                    <div class="comment_info">' + $('.post_comment_input').val() + '</div>\n' +
+                        '                </li>'
+                    $('.blog_comment').append(html)
+                    $('.post_comment_input').val('')
+                    $('.comment_count').text(parseInt($('.comment_count').text()) + 1)
+
+                } else if (res.code === 403) {
+                    go_to_login()
+                }else{
+                swal('',res.error,'error')
+            }
+            }
+        })
+    }
+
+    function PostChildComment() {
+        $.ajax({
+            url: BLOGURL + 'details/' + sessionStorage.getItem('detail_blog_id') + '/comment',
+            type: 'post',
+            dataType: 'json',
+            data: JSON.stringify({
+                'parent_comment_id': sessionStorage.getItem('parent_comment_id'),
+                'type': 'text',
+                'to_user_id': sessionStorage.getItem('to_user_id'),
+                'comment_info': $('.post_comment_input').val(),
+            }),
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", localStorage.getItem("pymara_token"));
+            },
+            success: function (res) {
+                if (res.code === 200) {
+                    swal('', '发表评论成功', 'success')
+                    html = '                <div class="comment_child">\n' +
+                        '                    <div>\n' +
+                        '                        <a href="#">\n' +
+                        '                            <img class="img-circle"  src="../../media/avatar/' + res.data.avatar + '" alt="">\n' +
+                        '                            <span>' + res.data.user_name + '</span>\n' +
+                        '                        </a>\n' +
+                        '                        <a href="">\n' +
+                        '                            <span>回复</span>\n' +
+                        '                            <span>' + res.data.to_user_name + '</span>\n' +
+                        '                            <span>' + res.data.create_time + '</span>\n' +
+                        '                        </a>\n' +
+                        '                        <span class="post_comment_child user_id_' + res.data.user_id + '"><a href="#post_comment">回复</a></span>\n' +
+                        '\n' +
+                        '                    </div>\n' +
+                        '                    <div class="comment_info">' + $('.post_comment_input').val() + '</div>\n' +
+                        '                </div>'
+                    $('.comment_id_' + res.data.parent_comment_id).append(html)
+                    $('.post_comment_input').val('')
+                    $('.del_post_child_comment_btn').click()
+                } else if (res.code === 403) {
+                    go_to_login()
+                } else (
+                    swal('', res.error, 'success')
+                )
+            }
+        })
+    }
+
+    function PatchPraise() {
+        $.ajax({
+            url: BLOGURL + 'details/' + sessionStorage.getItem('detail_blog_id') + '/praise',
+            type: 'patch',
+            dataType: 'json',
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+            },
+            success: function (res) {
+                if (res.code === 200) {
+                    $('.praise_count').addClass('blue_select')
+                    $('.praise_count').text(parseInt($('.praise_count').text()) + 1)
+                } else if (res.code === 201) {
+                    $('.praise_count').removeClass('blue_select')
+                    $('.praise_count').text(parseInt($('.praise_count').text()) - 1)
+
+                } else if (res.code === 403) {
+                    go_to_login()
+                }else{
+                swal('',res.error,'error')
+            }
+            }
+        })
+    }
+
+</script>
+<script>
+
+
+    $('.original_log').hide()
+    blog_id = GetRequest().blog_id
+    sessionStorage.setItem('detail_blog_id', blog_id)
+    if (blog_id) {
+        GetUserInfo(blog_id)
+        GetContent()
+        GetComment()
+    }
+
+
+</script>
+<script>
+    $(
+        $('.del_post_child_comment_btn').hide()
+    )
+</script>
+<script>
+
+    $('.comment_btn').on('click', function () {
+        if ($(this).hasClass('post_comment_btn')) {
+            PostComment()
+        } else {
+            PostChildComment()
+        }
+    })
+
+</script>
+<script>
+    $(
+        $('.blog_comment').on('click', '.post_comment_child', function () {
+            to_user_id = $(this).prop('class').split('_')[4]
+            parent_comment_id = $(this).parents('.comment').prop('class').split('_')[2]
+            sessionStorage.setItem('to_user_id', to_user_id)
+            sessionStorage.setItem('parent_comment_id', parent_comment_id)
+            $('.post_comment_btn').addClass('post_child_comment_btn').removeClass('post_comment_btn')
+            $('.del_post_child_comment_btn').show()
+            //TODO 不知道为什么不生效
+            $('.post_comment_input').focus().select()
+        }),
+        $('.del_post_child_comment_btn').on('click', function () {
+            $('.post_child_comment_btn').addClass('post_comment_btn').removeClass('post_child_comment_btn')
+            $('.del_post_child_comment_btn').hide()
+        }),
+        $('#pymara-logo').on('click', function () {
+            location.href = htmlUrl + 'pymara/templates/index.html'
+        }),
+        $('.praise_count').on('click', function () {
+            PatchPraise()
+        }),
+        $('.favorite_count,.share').on('click', function () {
+            no()
+        }),
+
+    $("#search-btn").click(function () {
+        var inputStr = $("#search-input").val();
+        if (inputStr) {
+            location.href = BLOGHREF + 'search.html?keyword=' + inputStr
+        } else {
+            location.href = BLOGHREF + 'search.html'
+        }
+
+    })
+    )
+</script>
+</body>
+</html>

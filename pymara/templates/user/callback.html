@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PyMara绑定注册</title>
+
+    <link rel="shortcut icon" href="../../static/user/user/img/ico/login.ico">
+    <link rel="stylesheet" href="../../static/tools/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/user/user/css/login.css">
+    <link rel="stylesheet" href="../../static/user/user/css/callback.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+
+    <script src="../../static/tools/js/jquery.min.js"></script>
+    <script src="../../static/tools/js/bootstrap.min.js"></script>
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <script src="../../static/tools/js/settings.js"></script>
+    <script src="../../static/user/user/js/callback.js"></script>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default header-font-size">
+            <div class="container-fluid header-box">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <img src="../../static/index/img/jpg/logo.jpg" alt="Logo">
+                </div>
+
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navigation-bar-ul">
+                        <!-- 导航栏标签 -->
+                        <!--
+                        <li class="hover-bg-color-change">
+                            <a href="../index.html">首页</a>
+                        </li>
+                        -->
+
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+
+    <!--页面主体最大容器-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-1 col-xs-1"></div>
+            <div class="col-lg-6 col-md-6 col-md-10 col-sm-10 show-box-DIV">
+                <div id="waiting-img">
+                    <img src="../../static/user/user/img/gif/waiting_01.gif" alt="">
+                </div>
+
+                <div id="selection-mode">
+                    <div id="ok-pm-user" class="way-box-DIV">已有PyMara用户</div>
+                    <div id="no-pm-user" class="way-box-DIV">没有PyMara用户</div>
+                </div>
+
+                <div id="old-user">
+                    <table class="login-input-table">
+                    <tr>
+                        <td>
+                            <img id="psd-img" src="../../static/user/user/img/png/psd_img.png" alt="">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="phone"></label><input id="phone" type="text" placeholder="手机号" maxlength="11">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="psd-box-TD">
+                            <label for="psd"></label><input id="psd" type="password" placeholder="密码" maxlength="16">
+                            <i id="showPsd" class="glyphicon glyphicon-eye-close"></i>
+                            <div id="error-show-div"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <button id="login-btn" class="btn btn-primary login-input-ele">绑定PyMara账号</button>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <div class="app-img-box">
+                                <a href="retrieve.html">忘记密码</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-md-1 col-sm-1"></div>
+        </div>
+    </div><!--页面主体最大容器-->
+
+    <script>
+
+        function showEle(show_tar) {
+            var arr = ["#waiting-img", "#selection-mode", "#old-user"];
+            for (var i = 0; i<arr.length; i++){
+                if(arr[i] === show_tar){
+                    $(arr[i]).show();
+                }else{
+                    $(arr[i]).hide();
+                }
+            }
+        }
+
+        var weiboCode = location.search;
+        var newWeiboUid = "";
+
+        if(localStorage.getItem('pymara_wb_uid')){
+            showEle("#selection-mode");
+        }else{
+            showEle("#waiting-img");
+        }
+
+        $.ajax({
+            url: baseUrl + "v1/logreg/weibo/user" + weiboCode,
+            type: "get",
+            dataType: "json",
+            success: function (res) {
+                if(res.code===200){
+                    // 正常登录
+                    // {"code": 201, "data": str_token, "id": old_pymara_user.id, "phone": old_user_phone}
+                    window.localStorage.clear();
+                    window.localStorage.setItem('pymara_token', res.data);
+                    window.localStorage.setItem('pymara_uname', res.uname);
+                    window.localStorage.setItem('pymara_uid', res.id);
+                    window.localStorage.setItem('pymara_wuid', res.wuid);
+                    window.localStorage.setItem('pymara_uphone', res.phone);
+                    location.href = htmlUrl + "pymara/templates/index.html";
+                }else if(res.code===302){
+                    // 需要做关联注册, 让用户选择是否有 pm用户
+                    newWeiboUid = res.data;
+                    window.localStorage.clear();
+                    window.localStorage.setItem('pymara_wb_uid', newWeiboUid);
+                    showEle("#selection-mode");
+                }else if(res.code===610){
+                    // 用户权限被限制
+                    swal("您的账号被限制", "请联系工作人员", "error");
+                    location.href = htmlUrl + "pymara/templates/user/login.html";
+                }
+            }
+
+        })
+    </script>
+
+    <script>
+
+        $("#ok-pm-user").on("click", function () {
+            showEle("#old-user");
+        });
+        $("#no-pm-user").on("click", function () {
+            window.localStorage.clear();
+            window.location.href = htmlUrl + "pymara/templates/user/register.html"
+        });
+
+        function judgeLogin(phone_input, psd_input, error_text, str1, str2){
+            phone_input.prop("className", str1);
+            psd_input.prop("className", str1);
+            error_text.html(str2);
+        }
+
+        $("#login-btn").click(function () {
+            var phone1 = $("#phone").val();
+            var psd2 = $("#psd").val();
+
+            var re1 = /1[0-9]{10}/g;
+            var re2 = /[0-9a-zA-Z_]{8,16}/g;
+            var re3 = /[^0-9a-zA-Z_]+/g;
+
+            var res1 = re1.test(phone1);
+            var res2 = re2.test(psd2);
+            var res3 = re3.test(psd2);
+
+            if (res1 && res2 && !res3){
+                console.log(phone1, psd2);
+                judgeLogin($("#phone"), $("#psd"), $("#error-show-div"), "", "");
+
+                if (newWeiboUid){
+                    // 发送请求到服务器绑定pm用户并登录
+                    $.ajax({
+                        url: baseUrl + "v1/logreg/weibo/user/" + newWeiboUid,
+                        type: "post",
+                        dataType: "json",
+                        data: JSON.stringify({"phone_number": phone1, "password": psd2}),
+                        success: function (res) {
+                            $("#login-btn").prop("disabled", false);
+                            if(res.code===200){
+                                window.localStorage.clear();
+                                window.localStorage.setItem('pymara_token', res.data);
+                                window.localStorage.setItem('pymara_uid', res.id);
+                                window.localStorage.setItem('pymara_uname', res.uname);
+                                window.localStorage.setItem('pymara_wuid', res.wuid);
+                                window.localStorage.setItem('pymara_uphone', res.phone);
+                                location.href = htmlUrl + "pymara/templates/index.html";
+                            }else{
+                                judgeLogin($("#phone"), $("#psd"), $("#error-show-div"), "error-input", "用户名或密码有误");
+                                console.log(res.code, res.error);
+                            }
+                        },
+                    });
+                    $("#login-btn").prop("disabled", true)
+                }else{
+                    swal("微博登录失败", "请重试", "error");
+                    location.href = htmlUrl + "pymara/templates/user/login.html";
+                }
+
+            }else{
+                judgeLogin($("#phone"), $("#psd"), $("#error-show-div"), "error-input", "用户名或密码格式错误");
+            }
+
+        });
+    </script>
+</body>
+</html>

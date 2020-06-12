@@ -1,0 +1,117 @@
+body,div,nav,img,i,form,input,button,header,footer,span{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url("../img/register_bg_img/01.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+a:link{text-decoration:none}
+a:visited{text-decoration:none}
+a:hover{text-decoration:none}
+a:active{text-decoration:none}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+
+/*设置导航栏样式 开始1*/
+
+.header-font-size{
+    font-size: 20px;
+}
+
+.navbar-default {
+    background-color: #FFFFFF;
+    border-color: #e7e7e7;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+}
+
+.header-box{
+    width: 80%;
+    margin: auto;
+}
+
+.hover-bg-color-change:hover{
+    background-color: #E7E7E7;
+}
+
+/*设置导航栏样式 结束1*/
+
+
+/*设置页面主体样式 开始2*/
+
+.right-box-DIV{
+    margin-top: 50px;
+}
+
+.head-text-box{width: 100%;}
+
+.reg-input{
+    font-size: 25px;
+    width: 100%;
+    padding: 0 5px;
+    margin-top: 10px;
+}
+
+.relative-td{
+    position: relative;
+}
+
+.right-flag{
+    font-size: 25px;
+    position: absolute;
+    top: 29%;
+    right: 4%;
+}
+
+/* 设置提示图标和字体样式　开始2.1 */
+.glyphicon-ok-sign, .glyphicon-ok{
+    color: green;
+}
+.glyphicon-remove-sign, .glyphicon-warning-sign, .glyphicon-remove{
+    color: red;
+}
+.glyphicon-hourglass{
+    color: #cccccc;
+}
+
+.error-font-style{
+    font-size: 16px;
+    color: red;
+}
+
+.ok-font-style{
+    font-size: 16px;
+    color: green;
+}
+/* 设置提示图标和字体样式　开始2.1 */
+
+
+#msg-INPUT{
+    font-size: 25px;
+    width: 57%;
+    padding: 0 5px;
+    margin-top: 10px;
+}
+
+#msg-BTN{
+    width: 39%;
+    font-size: 21px;
+    margin-top: 11px;
+    padding: 6px;
+}
+
+#register-BTN{
+    font-size: 25px;
+    width: 100%;
+    padding: 3px 5px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+/*设置页面主体样式 结束2*/

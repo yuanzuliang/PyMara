@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PyMara注册</title>
+
+    <link rel="shortcut icon" href="../../static/user/user/img/ico/register.ico">
+    <link rel="stylesheet" href="../../static/tools/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/user/user/css/register.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+    <script src="../../static/tools/js/jquery.min.js"></script>
+    <script src="../../static/tools/js/bootstrap.min.js"></script>
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <script src="../../static/tools/js/settings.js"></script>
+    <script src="../../static/tools/js/reg_countdown.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-default header-font-size">
+            <div class="container-fluid header-box">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <img id="pymara-logo" src="../../static/index/img/jpg/logo.jpg" alt="Logo">
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navigation-bar-ul">
+                        <!-- 导航栏标签 -->
+                        <li class="hover-bg-color-change">
+                            <a href="../index.html">首页</a>
+                        </li>
+                        <li class="hover-bg-color-change">
+                            <a href="login.html">登录</a>
+                        </li>
+
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+
+    <!--页面主体最大容器-->
+    <div class="container">
+        <div class="row">
+            <!--这里可以拓展新功能-->
+            <div class="col-lg-5 col-md-5 col-sm-1 col-xs-1 left-box-DIV"></div>
+
+            <!--登录主体-->
+            <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10 right-box-DIV">
+                <div class="empty-placeholder"></div>
+                <div class="head-text-box">
+                    <h2>欢迎注册PyMara博客</h2>
+                    <h3>
+                        学无止境
+                        <!--
+                        这里需要一句话
+                        <i class="glyphicon glyphicon-hourglass"></i>
+                        <i class="glyphicon glyphicon-ok-sign"></i>
+                        <i class="glyphicon glyphicon-remove-sign"></i>
+                        <i class="glyphicon glyphicon-warning-sign"></i>
+                        <i class="glyphicon glyphicon-ok"></i>
+                        <i class="glyphicon glyphicon-remove"></i>
+                        -->
+                    </h3>
+                    <table>
+                        <!--手机号输入框和下部错误提示信息-->
+                        <tr>
+                            <td class="relative-td">
+                                <input id="phone-number-INPUT" type="text" placeholder="手机号"  class="reg-input" maxlength="11">
+                                <div class="right-flag"><i id="phone-num-input-I"></i></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i id="phone-num-text-I"></i>
+                                <span id="phone-number-text-SPAN"></span>
+                            </td>
+                        </tr>
+
+
+                        <!--密码1号输入框和下部错误提示信息-->
+                        <tr>
+                            <td class="relative-td">
+                                <input id="psd-INPUT-1" type="password" placeholder="密码" class="reg-input" maxlength="16">
+                                <div class="right-flag"><i id="psd1-input-I"></i></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <i id="psd1-text-I-1"></i>
+                                    <span id="psd1-text-SPAN-1"></span>
+                                </div>
+
+
+                                <div>
+                                    <i id="psd1-text-I-2"></i>
+                                    <span id="psd1-text-SPAN-2"></span>
+                                </div>
+
+
+                                <div>
+                                    <i id="psd1-text-I-3"></i>
+                                    <span id="psd1-text-SPAN-3"></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <!--确认密码输入框和下部错误提示信息-->
+                        <tr>
+                            <td class="relative-td">
+                                <input id="psd-INPUT-2" type="password" placeholder="确认密码" class="reg-input" maxlength="16">
+                                <div class="right-flag"><i id="psd2-input-I"></i></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <i id="psd2-text-I-1"></i>
+                                <span id="psd2-text-SPAN-1"></span>
+                            </td>
+                        </tr>
+
+                        <!-- 发送短信验证码 -->
+                        <tr>
+                            <td class="relative-td">
+                                <input id="msg-INPUT" type="text" placeholder="短信验证码" maxlength="6">
+                                <button id="msg-BTN" type="button" class="btn btn-primary pull-right">获取验证码</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <i id="msg-text-I-1"></i>
+                                <span id="msg-text-SPAN-1"></span>
+                            </td>
+                        </tr>
+
+                        <!-- 注册按钮 -->
+                        <tr>
+                            <td>
+                                <button id="register-BTN" type="button" class="btn btn-primary">注&nbsp;&nbsp;册</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 left-box-DIV"></div>
+        </div>
+    </div>
+
+
+    <!--　数据校验　-->
+    <script>
+
+        function errorStatus(target_I, target_SPAN, html_str) {
+            target_I.prop("className", "glyphicon glyphicon-remove");
+            target_SPAN.html(html_str).prop("className", "error-font-style");
+        }
+
+        function emptyStatus(target_I, target_SPAN) {
+            target_I.prop("className", "");
+            target_SPAN.html("").prop("className", "");
+        }
+
+        var PHONE_NUMBER = "";
+        var PASSWORD1 = "";
+        var PASSWORD2 = "";
+        var MSG_NUM = "";
+
+        // 实时监测手机号输入框的值
+        $('#phone-number-INPUT').bind('input propertychange', function() {
+            var phoneNumInputI = $("#phone-num-input-I");
+
+            var phoneNum = $(this).val();
+            var regNum = /1\d{10}/g;
+            var result1 = regNum.test(phoneNum);
+
+            if (result1){
+                // 手机号匹配成功 发送异步请求检测
+                emptyStatus($("#phone-num-text-I"), $("#phone-number-text-SPAN"));
+
+
+                // 此时发送一个ajax异步请求去后端数据库查询手机号是否已注册
+                // 异步检测时输入框后图标为沙漏
+                phoneNumInputI.prop("className", "glyphicon glyphicon-hourglass");
+                $.ajax({
+                    url: baseUrl + "v1/logreg/judge_phone_number",
+                    type: "post",
+                    data: JSON.stringify({"phone_number": phoneNum}),
+                    success: function (res) {
+                        if(res.code===200){
+                            // 200 手机号校验成功
+                            PHONE_NUMBER = phoneNum;
+                            $("#phone-num-input-I").prop("className", "glyphicon glyphicon-ok-sign");
+                        }else if(res.code===601){
+                            // 601 手机号已被注册
+                            $("#phone-num-input-I").prop("className", "glyphicon glyphicon-warning-sign");
+                            errorStatus($("#phone-num-text-I"), $("#phone-number-text-SPAN"), res.error);
+                            PHONE_NUMBER = "";
+                        }
+                    }
+                });
+            }else{
+                phoneNumInputI.prop("className", "");
+                errorStatus($("#phone-num-text-I"), $("#phone-number-text-SPAN"), "请输入正确格式的手机号");
+                PHONE_NUMBER = "";
+            }
+        });
+
+        // 实时监测密码1输入框的值
+        $('#psd-INPUT-1').bind('input propertychange', function() {
+
+            var judge1 = 0;
+            var judge2 = 0;
+            var judge3 = 0;
+
+            var psd1 = $(this).val();
+            if(psd1===""){
+                judge1 = 0;
+                errorStatus($("#psd1-text-I-1"), $("#psd1-text-SPAN-1"), "密码不能为空");
+                emptyStatus($("#psd1-text-I-2"), $("#psd1-text-SPAN-2"));
+                emptyStatus($("#psd1-text-I-3"), $("#psd1-text-SPAN-3"));
+                $("#psd1-input-I").prop("className", "");
+                PASSWORD1 = "";
+            }else{
+                judge1 = 1;
+                emptyStatus($("#psd1-text-I-1"), $("#psd1-text-SPAN-1"));
+
+                var psdLen = psd1.length;
+                if(psdLen >= 8 && psdLen <= 16){
+                    judge2 = 1;
+                    emptyStatus($("#psd1-text-I-2"), $("#psd1-text-SPAN-2"));
+                }else{
+                    judge2 = 0;
+                    errorStatus($("#psd1-text-I-2"), $("#psd1-text-SPAN-2"), "长度为8-16个字符");
+                    PASSWORD1 = "";
+                }
+
+                var regPsdStr = /[^a-z_A-Z0-9]/g;
+                var result3 = regPsdStr.test(psd1);
+                if(result3){
+                    judge3 = 0;
+                    errorStatus($("#psd1-text-I-3"), $("#psd1-text-SPAN-3"), "只能包含大小写字母、数字、下划线");
+                    PASSWORD1 = "";
+                }else{
+                    judge3 = 1;
+                    emptyStatus($("#psd1-text-I-3"), $("#psd1-text-SPAN-3"));
+                }
+
+                if(judge1 === 1 && judge2 === 1 && judge3 === 1 ){
+                    $("#psd1-input-I").prop("className", "glyphicon glyphicon-ok-sign");
+                    emptyStatus($("#psd1-text-I-1"), $("#psd1-text-SPAN-1"));
+                    emptyStatus($("#psd1-text-I-2"), $("#psd1-text-SPAN-2"));
+                    emptyStatus($("#psd1-text-I-3"), $("#psd1-text-SPAN-3"));
+                    PASSWORD1 = psd1;
+                }else{
+                    $("#psd1-input-I").prop("className", "");
+                }
+
+                if(PASSWORD2 && (PASSWORD1 !==　PASSWORD2)){
+                    PASSWORD2 = "";
+                    $("#psd2-input-I").prop("className", "");
+                    errorStatus($("#psd2-text-I-1"), $("#psd2-text-SPAN-1"), "两次密码不一致，请重试！");
+                }
+            }
+
+        });
+
+        // 实时监测密码2输入框的值
+        $('#psd-INPUT-2').bind('input propertychange', function(){
+
+            var psd2 = $(this).val();
+            if(psd2!==PASSWORD1){
+                errorStatus($("#psd2-text-I-1"), $("#psd2-text-SPAN-1"), "两次密码不一致，请重试！");
+                $("#psd2-input-I").prop("className", "");
+                PASSWORD2 = "";
+            }else{
+                emptyStatus($("#psd2-text-I-1"), $("#psd2-text-SPAN-1"));
+                $("#psd2-input-I").prop("className", "glyphicon glyphicon-ok-sign");
+                PASSWORD2 = psd2;
+            }
+        });
+
+        // 发送短信验证码
+        $("#msg-BTN").click(function () {
+            if(PHONE_NUMBER && PASSWORD1 && PASSWORD2 && (PASSWORD1 === PASSWORD2)){
+                // 将发送短信验证码按钮变为倒计时
+                reg_countdown(this);
+
+                $.ajax({
+                    url: baseUrl + "v1/logreg/send_message",
+                    data: JSON.stringify({"phone_number": PHONE_NUMBER}),
+                    type: "post",
+                    success: function (res) {
+                        if(res.code===200){
+                            swal(
+                                "发送成功",
+                                "请在手机端查收",
+                                "success"
+                            )
+                        }else{
+                            swal(
+                                "发送失败",
+                                "请稍后重试",
+                                "error"
+                            )
+                        }
+                    }
+                })
+            }else{
+                swal(
+                    "手机号或密码有误",
+                    "请重新输入",
+                    "error"
+                )
+            }
+        });
+
+        //  校验验证码输入格式
+        $('#msg-INPUT').bind('input propertychange', function(){
+            var msg_num = $(this).val();
+
+            var reg4 = /\d{6}/;
+            var res4 = reg4.test(msg_num);
+
+            if (res4){
+                MSG_NUM = msg_num;
+                emptyStatus($("#msg-text-I-1"), $("#msg-text-SPAN-1"));
+            }else{
+                MSG_NUM = "";
+                errorStatus($("#msg-text-I-1"), $("#msg-text-SPAN-1"), "请输入6位数字字符");
+            }
+
+        });
+
+        // 用户最终注册
+        $("#register-BTN").click(function () {
+            if(PHONE_NUMBER && PASSWORD1 && PASSWORD2 && (PASSWORD1 === PASSWORD2) && MSG_NUM){
+                $.ajax({
+                    url: baseUrl + "v1/logreg/register",
+                    type: "post",
+                    data: JSON.stringify({"phone_num": PHONE_NUMBER, "psd": PASSWORD1, "msg_num": MSG_NUM}),
+                    success: function (res) {
+                        if(res.code===200){
+                            swal(
+                                "恭喜您注册成功",
+                                "请前往登录",
+                                "success"
+                            );
+                            location.href = htmlUrl + "pymara/templates/user/login.html";
+                        }else{
+                            swal(
+                                "很遗憾您注册失败",
+                                "请重试",
+                                "error"
+                            )
+                        }
+                    }
+                })
+
+            }else{
+                swal(
+                  '输入有误',
+                  '无法注册',
+                  'error'
+                )
+            }
+        });
+
+
+    </script>
+
+    <!--切换背景-->
+    <script>
+        var imgNum = 0;
+
+        var timerID = setInterval(function () {
+
+            var bgUrlStart = "url('../../static/user/img/register_bg_img/";
+            var bgUrlEnd = "')";
+            var bgImg = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"];
+
+            imgNum++;
+            if(imgNum > 3){
+                imgNum = 0;
+            }
+
+            document.body.style.background = bgUrlStart + bgImg[imgNum] + bgUrlEnd;
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundSize = "100%";
+
+        }, 3000);
+    </script>
+</body>
+</html>

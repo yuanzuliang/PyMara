@@ -1,0 +1,429 @@
+body, div, nav, img, i, form, input, button, header, footer, span {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f5f6f7;
+}
+
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+@media (min-width: 0px) {
+    .blog-title-P {
+        font-size: 15px;
+    }
+
+    .blog-author-P {
+        font-size: 12px;
+    }
+
+    .blogs-tag-box-TD {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 540px) {
+    .blog-title-P {
+        font-size: 16px;
+    }
+
+    .blog-author-P {
+        font-size: 13px;
+    }
+
+    .blogs-tag-box-TD {
+        font-size: 11px;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .blog-title-P {
+        font-size: 22px;
+    }
+
+    .blog-author-P {
+        font-size: 17px;
+    }
+
+    .blogs-tag-box-TD {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 992px) {
+    .blog-title-P {
+        font-size: 23px;
+    }
+
+    .blog-author-P {
+        font-size: 18px;
+    }
+
+    .blogs-tag-box-TD {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .blog-title-P {
+        font-size: 27px;
+    }
+
+    .blog-author-P {
+        font-size: 22px;
+    }
+
+    .blogs-tag-box-TD {
+        font-size: 18px;
+    }
+}
+
+
+/*设置导航栏样式 开始1*/
+
+.header-font-size {
+    font-size: 20px;
+}
+
+.navigation-bar-ul {
+    width: 50%;
+    /*background-color: lightpink;*/
+}
+
+.myself-UL {
+    /*background-color: lightseagreen;*/
+}
+
+.navbar-default {
+    background-color: #FFFFFF;
+    border-color: #e7e7e7;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+}
+
+.header-box {
+    width: 70%;
+    margin: auto;
+}
+
+.search-input-li {
+    width: 40%;
+}
+
+.search-box {
+    width: 300px;
+    margin-left: 30px;
+}
+
+
+.head-portrait-img-li {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.head-portrait-img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.vip-logo-i {
+    color: #cccccc;
+}
+
+.hover-bg-color-change:hover {
+    background-color: #E7E7E7;
+}
+
+.navbar-default .navbar-nav > li > a {
+    padding: 15px 7px;
+}
+
+.myself-box-DIV {
+    padding: 3px 20px;
+}
+
+.myself-box-DIV:hover {
+    cursor: pointer;
+}
+
+#myself-a:hover {
+    background-color: #E7E7E7;
+}
+
+.myself-ul-font-size {
+    font-size: 18px;
+}
+
+.badge {
+    background-color: #ff4444;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+/*设置导航栏样式 结束1*/
+
+
+/*设置主体样式 开始2*/
+.container {
+    margin-top: 70px;
+    margin-bottom: 200px;
+}
+
+.cont-middle-box {
+    padding-left: 3px;
+}
+
+.cont-right-box {
+    padding-left: 3px;
+}
+
+.classification-box {
+    width: 97px;
+    position: fixed;
+}
+
+.advertising-img {
+    width: 100%;
+}
+
+#slideshow-img {
+    margin-top: 3px;
+}
+
+
+/*设置主体样式 结束2*/
+
+.blogs-box {
+    margin-top: 3px
+}
+
+.one-blogs-box {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    padding: 15px 8px 8px 8px;
+}
+
+.one-blogs-box table {
+    width: 100%;
+}
+
+.head-img-box-TD {
+    width: 10%;
+    min-width: 40px;
+}
+
+.blog-title-P {
+    color: black;
+}
+
+.blog-author-P {
+
+}
+
+.blogs-tag-box-TD {
+    color: black;
+    text-align: right;
+}
+
+.blogs-tag-box-TD > span {
+    margin-left: 10px;
+}
+
+.blogs-tag-box-TD > span > i {
+    margin-right: 5px;
+}
+
+
+/*设置博客首页显示样式 开始3*/
+/*.blogs-box{margin-top: 3px;}*/
+
+/*.blog-div{*/
+/*    height: 100%;*/
+/*    background-color: white;*/
+/*    border: 1px solid #DDDDDD;*/
+/*    padding: 20px 10px 5px 10px;*/
+/*}*/
+
+/*.blog-head-img{*/
+/*    width: 8%;*/
+/*    margin-bottom: 30px;*/
+/*    vertical-align: middle;*/
+/*    border-radius: 35px;*/
+/*    min-width: 50px;*/
+/*}*/
+
+/*.blog-text-div{*/
+/*    width: 90%;*/
+/*    height: 100px;*/
+/*    display: inline-block;*/
+/*    vertical-align: middle;*/
+/*}*/
+
+/*.blog-title-h3{*/
+/*    margin-top: 5px;*/
+/*    color: black;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.blog-title-h3:hover{color: #337AB7;}*/
+
+/*.blog-icon>span{margin-left: 10px;}*/
+
+/*设置博客首页显示样式 结束3*/
+/* li样式 */
+.blogs-box li {
+    width: 720px;
+    border-top: solid 1px #ccc;
+    height: 100px;
+    margin: 15px;
+    position: relative;
+}
+
+/* 头像 */
+.blogs-box img {
+    width: 24px;
+    height: 24px;
+    /* position:absolute;left: 1px;top: 3px; */
+}
+
+/* 名字 */
+.blogs-box .name {
+    position: absolute;
+    left: 1px;
+    bottom: 3px;
+    color: #99a2aa;
+    font-size: 12px;
+
+}
+
+.blogs-box .name:hover {
+    color: #00a1d6;
+
+}
+
+/* 点赞收藏评论 */
+.history,._history  {
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+}
+
+.history > i,._history >i {
+    padding-right: 25px;
+}
+
+.history > i:hover ,._history >i:hover{
+    cursor: pointer;
+    color: #00a1d6;
+}
+
+/*!*标题和图标*!*/
+/*.suggest span {*/
+/*    font-size: 24px;*/
+/*}*/
+
+/*!*图标*!*/
+/*.suggest .record_log, .hot_search_log {*/
+/*    color: #f489ad;*/
+/*}*/
+
+
+/*.suggest > .hot_search, .records {*/
+/*    display: inline-block;*/
+/*    width: 300px;*/
+/*}*/
+/* 内容 */
+.abstract {
+    font-size: 12px;
+    color: #99a2aa;
+    position: absolute;
+    left: 1px;
+    top: 40px;
+    width: 700px;
+    /*超出部分用省略号*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 标题 */
+.title {
+    position: absolute;
+    left: 1px;
+    top: 3px;
+    font: 12px Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    width: 700px;
+    /*超出部分用省略号*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.title:hover {
+    color: #00a1d6;
+}
+
+
+/* 清除列表样式 */
+.blogs-box ul, .blogs-box li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blogs-box ul {
+    display: inline-block;
+}
+
+/* li样式 */
+.blogs-box li {
+    width: 720px;
+    border-top: solid 1px #ccc;
+    height: 100px;
+    margin: 15px;
+    position: relative;
+}
+
+/* 去除a标签样式 */
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+/*原创小图标*/
+.log {
+    /*display: inline-block;*/
+    position: relative;
+    top: -4px;
+    font-size: 13px;
+    text-align: center;
+    padding: 1px;
+    border: #ff5c7c 1px solid;
+    color: #ff5c7c;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+.log:hover {
+    cursor: default;
+    color: #ff5c7c;
+}
+
+/*搜索无结果图片*/
+.no_search_results {
+    /*position: absolute;*/
+    background: url(//s1.hdslb.com/bfs/static/jinkela/search/asserts/no-data.png) no-repeat 50% 50%;
+    width: 730px;
+    height: 400px;
+}

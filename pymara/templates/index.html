@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PyMara博客</title>
+
+    <link rel="shortcut icon" href="../static/index/img/ico/pymara.ico">
+    <link rel="stylesheet" href="../static/tools/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/index/css/index.css">
+    <link rel="stylesheet" href="../static/tools/css/sweetalert2.min.css">
+    <script src="../static/tools/js/jquery.min.js"></script>
+    <script src="../static/tools/js/bootstrap.min.js"></script>
+    <script src="../static/tools/js/sweetalert2.js"></script>
+    <script src="../static/tools/js/settings.js"></script>
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default header-font-size navbar-fixed-top">
+        <div class="container-fluid header-box">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span></button>
+                <img id="pymara-logo" src="../static/index/img/jpg/logo.jpg" title="PyMara博客" alt="Logo">
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navigation-bar-ul">
+                    <!-- 导航栏标签 -->
+                    <!--
+                    <li class="hover-bg-color-change">
+                        <a href="#">首页</a>
+                    </li>导航栏标签 -->
+
+                    <li class="search-input-li">
+                        <!--　搜索框　-->
+                        <div class="input-group search-box">
+                            <input type="text" id="search-input" class="form-control navbar-btn"
+                                   placeholder="Search ...">
+                            <span class="input-group-btn">
+                                    <button id="search-btn" class="btn btn-default navbar-btn" type="button">&nbsp;搜&nbsp;索&nbsp;</button>
+                                </span>
+                        </div><!-- /input-group -->
+                    </li>
+
+                </ul>
+                <ul id="judge-login-no" class="nav navbar-nav navbar-right myself-UL">
+
+                    <li class="hover-bg-color-change"><a href="./user/login.html">登录</a></li>
+                    <li class="hover-bg-color-change"><a href="./user/register.html">注册</a></li>
+
+                    <li class="head-portrait-img-li">
+                        <img id="head-IMG" src="../static/index/img/head/default.jpg" title="您还没有登录哦"
+                             class="head-portrait-img" alt="头像">
+                    </li>
+                </ul>
+
+                <ul id="judge-login-ok" class="nav navbar-nav navbar-right myself-UL">
+
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="glyphicon glyphicon-bell"></i><span class="badge pull-right"
+                                                                          id="total-num"></span>
+                        </a>
+                        <ul class="dropdown-menu myself-ul-font-size">
+                            <li>
+                                <a href="#">
+                                    公告<span class="badge pull-right" id="gonggao-num">3</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    评论<span class="badge pull-right" id="pinglun-num">8</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    关注<span class="badge pull-right" id="guanzhu-num"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    点赞<span class="badge pull-right" id="dianzan-num"></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    私信<span class="badge pull-right" id="sixin-num"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    系统通知<span class="badge pull-right" id="xitong-num">2</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="myself-a" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="glyphicon glyphicon-tower vip-logo-i"></i>&nbsp;&nbsp;我的<span
+                                class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu myself-ul-font-size">
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;我的关注
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-star"></i>&nbsp;&nbsp;我的收藏
+                                </a>
+                            </li>
+                            <li>
+                                <a href="user/info.html">
+                                    <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;个人中心
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;账号设置
+                                </a>
+                            </li>
+
+                            <li role="separator" class="divider"></li>
+
+                            <li>
+                                <a href="blog/forms.html">
+                                    <i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;创作博客
+                                </a>
+                            </li>
+                            <li>
+                                <a href="user/management.html">
+                                    <i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;管理博客
+                                </a>
+                            </li>
+
+                            <li role="separator" class="divider"></li>
+
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;&nbsp;我的订单
+                                </a>
+                            </li>
+
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-yen"></i>&nbsp;&nbsp;我的钱包
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-question-sign"></i>&nbsp;&nbsp;帮助
+                                </a>
+                            </li>
+                            <li>
+                                <div id='exit-login' class='myself-box-DIV'>
+                                    <i class="glyphicon glyphicon-log-out"></i>&nbsp;&nbsp;退出
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="head-portrait-img-li">
+                        <img id="head-IMG-2" src="../static/index/img/head/h-06.jpg" class="head-portrait-img" alt="头像">
+                    </li>
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>
+
+<!--页面主体最大容器-->
+<div class="container">
+
+    <div class="row">
+
+        <div id="header-top"></div>
+
+        <!--左侧绝对定位分栏-->
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 cont-left-box">
+            <div class="classification-box">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">推荐</a>
+                    <a href="blog/rank.html" class="list-group-item">排行榜</a>
+                    <a href="blog/search.html?keyword=python" class="list-group-item">Python</a>
+                    <a href="blog/search.html?keyword=java" class="list-group-item">Java</a>
+                    <a href="blog/search.html?keyword=mysql" class="list-group-item">MySQL</a>
+                    <a href="blog/search.html?keyword=redis" class="list-group-item">redis</a>
+                    <a href="blog/search.html?keyword=django" class="list-group-item">Django</a>
+                    <a href="#header-top" class="list-group-item" id="top">回顶部</a>
+                </div>
+            </div>
+            <div id="clear-float-DIV"></div>
+        </div><!--左侧绝对定位分栏-->
+
+        <!--中部消息主体部分-->
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 cont-middle-box">
+
+            <div>
+                <a href="#">
+                    <img class="advertising-img" src="../static/index/img/jpg/advertising-img-1.jpg" alt="广告位">
+                </a>
+            </div>
+
+            <div class="blogs-box">
+
+                <!--                &lt;!&ndash; 首页显示的一条博客 &ndash;&gt;-->
+                <!--                <div class="one-blogs-box">-->
+                <!--                    <table>-->
+                <!--                        <tr>-->
+                <!--                            <td rowspan="2" class="head-img-box-TD">-->
+                <!--                                <img src="http://127.0.0.1:8000/Media/head/h-02.jpg" class="img-circle img-responsive"-->
+                <!--                                     alt="">-->
+                <!--                            </td>-->
+                <!--                            <td>-->
+                <!--                                <a href="">-->
+                <!--                                    <p class="blog-title-P">Django Web框架教学笔记</p>-->
+                <!--                                </a>-->
+                <!--                            </td>-->
+                <!--                        </tr>-->
+                <!--                        <tr>-->
+                <!--                            <td>-->
+                <!--                                <p class="blog-author-P">陈同学</p>-->
+                <!--                            </td>-->
+                <!--                        </tr>-->
+
+                <!--                        <tr>-->
+                <!--                            <td></td>-->
+                <!--                            <td>-->
+                <!--                                <span class="label label-success">原创</span>-->
+                <!--                                <span class="label label-default">Default</span>-->
+                <!--                                <span class="label label-primary">Primary</span>-->
+                <!--                                <span class="label label-success">Success</span>-->
+                <!--                                <span class="label label-info">Info</span>-->
+                <!--                                <span class="label label-warning">Warning</span>-->
+                <!--                                <span class="label label-danger">Danger</span>-->
+                <!--                            </td>-->
+                <!--                        </tr>-->
+
+                <!--                        <tr>-->
+                <!--                            <td></td>-->
+                <!--                            <td class="blogs-tag-box-TD">-->
+                <!--                                    <span>-->
+                <!--                                        <i class="glyphicon glyphicon-thumbs-up"></i>-->
+                <!--                                        <span>5628</span>-->
+                <!--                                    </span>-->
+
+                <!--                                <span>-->
+                <!--                                        <i class="glyphicon glyphicon-eye-open"></i>-->
+                <!--                                        <span>66</span>-->
+                <!--                                    </span>-->
+
+                <!--                                <span>-->
+                <!--                                        <i class="glyphicon glyphicon-comment"></i>-->
+                <!--                                        <span>27</span>-->
+                <!--                                    </span>-->
+                <!--                            </td>-->
+                <!--                        </tr>-->
+                <!--                    </table>-->
+
+                <!--                </div>-->
+
+                <!--                <div class="one-blogs-box">-->
+                <!--                    <table>-->
+                <!--                        <tr>-->
+                <!--                            <td rowspan="2" class="head-img-box-TD">-->
+                <!--                                <img src="../static/index/img/head/h-04.jpg" class="img-circle img-responsive" alt="">-->
+                <!--                            </td>-->
+                <!--                            <td><a href="#"><p class="blog-title-P">Django Web框架教学笔记</p></a></td>-->
+                <!--                        </tr>-->
+                <!--                        <tr>-->
+                <!--                            <td><p class="blog-author-P">陈同学</p></td>-->
+                <!--                        </tr>-->
+                <!--                        <tr>-->
+                <!--                            <td></td>-->
+                <!--                            <td id="show-tags-box-TD"></td>-->
+                <!--                        </tr>-->
+                <!--                        <tr>-->
+                <!--                            <td></td>-->
+                <!--                            <td class="blogs-tag-box-TD">-->
+                <!--                                <span><i class="glyphicon glyphicon-thumbs-up"></i><span>1</span></span>-->
+                <!--                                <span><i class="glyphicon glyphicon-eye-open"></i><span>1</span></span>-->
+                <!--                                <span><i class="glyphicon glyphicon-comment"></i><span>1</span></span>-->
+                <!--                            </td>-->
+                <!--                        </tr>-->
+                <!--                    </table>-->
+                <!--                </div>-->
+            </div>
+
+        </div><!--中部消息主体部分-->
+
+        <!--右侧推荐栏部分-->
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cont-right-box">
+
+            <div>
+                <a href="#">
+                    <img class="advertising-img" src="../static/index/img/jpg/advertising-img-2.jpg" alt="广告位">
+                </a>
+            </div>
+
+            <!-- 轮播图 -->
+            <div id="slideshow-img">
+
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                    </ol>
+
+
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="">
+                                <img src="../static/index/img/jpg/a-01.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+                                <!-- 这里可以加提示文字　下同 -->
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../static/index/img/jpg/a-02.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../static/index/img/jpg/a-03.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../static/index/img/jpg/a-04.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../static/index/img/jpg/a-05.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div><!-- 轮播图 -->
+
+        </div><!--右侧推荐栏部分-->
+
+    </div>
+    <div class="null"></div>
+
+
+</div><!--页面主体最大容器-->
+
+<!-- 搜索 -->
+<script>
+    $(".vip-logo-i").click(function () {
+        $(this).css("color", "red");
+    });
+
+    $("#search-btn").click(function () {
+        var inputStr = $("#search-input").val();
+        if (inputStr) {
+            location.href = BLOGHREF + 'search.html?keyword=' + inputStr
+        } else {
+            location.href = BLOGHREF + 'search.html'
+        }
+
+    });
+
+    // 左侧分类导航栏选中状态切换
+    $(".list-group a:not('#top')").click(function () {
+        $(".list-group a").prop("className", "list-group-item");
+        $(this).prop("className", "list-group-item active");
+    })
+    //鼠标划过
+    $(".list-group a").mouseover(function () {
+        $(".list-group a").prop("className", "list-group-item");
+        $(this).prop("className", "list-group-item active");
+    }).mouseout(function () {
+        $(".list-group a").prop("className", "list-group-item");
+        $(".list-group a:first").prop("className", "list-group-item active")
+    })
+    $('.blogs-box').on('click', '.history>i', function () {
+        if ($(this).hasClass('to_comment')) {
+            location.href = BLOGHREF + 'detail.html?blog_id=' + $(this).parent().prevAll('.title').prop('id')+'#post_comment'
+        }
+        location.href = BLOGHREF + 'detail.html?blog_id=' +         $(this).parent().prevAll('.title').prop('id')
+
+    })
+
+</script>
+
+<!--导航栏消息数据获取并显示-->
+<script>
+    // 判断页面的span标签中是否有消息数量
+    function judgeNumber(str_num) {
+        if (str_num) {
+            return parseInt(str_num);
+        } else {
+            return 0
+        }
+    }
+
+    // 获取消息数总和
+    function getTotalNum() {
+        var gonggaoNum = judgeNumber($("#gonggao-num").html());
+        var pinglunNum = judgeNumber($("#pinglun-num").html());
+        var guanzhuNum = judgeNumber($("#guanzhu-num").html());
+        var dianzanNum = judgeNumber($("#dianzan-num").html());
+        var sixinNum = judgeNumber($("#sixin-num").html());
+        var xitongNum = judgeNumber($("#xitong-num").html());
+        var totalNum = gonggaoNum + pinglunNum + guanzhuNum + dianzanNum + sixinNum + xitongNum;
+        $("#total-num").html(totalNum);
+    }
+
+</script>
+
+<!-- 校验用户登录状态 -->
+<script>
+
+    $("#judge-login-no").show();
+    $("#judge-login-ok").hide();
+
+    // 用户退出
+    function userExitLogin() {
+        $("#exit-login").click(function () {
+            window.localStorage.clear();
+            $("#judge-login-no").show();
+            $("#judge-login-ok").hide();
+        })
+    }
+
+    $(function () {
+        $.ajax({
+            url: baseUrl + "v1/index/judge_login",
+            type: "post",
+            dataType: "json",
+            success: function (res) {
+                if (res.code === 200) {
+                    // swal(res.uname, "欢迎访问本网站", "success");
+                    $("#judge-login-no").hide();
+                    $("#judge-login-ok").show();
+                    $("#head-IMG-2").prop("title", res.uname);
+                    getTotalNum();
+                    userExitLogin();
+                } else if (res.code === 403) {
+                    $("#judge-login-no").show();
+                    $("#judge-login-ok").hide();
+                } else if (res.code === 444) {
+                    swal("您的账号被限制", "请联系工作人员", "error")
+                }
+            },
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+            }
+        })
+    })
+</script>
+
+<!-- 异步请求博客内容 -->
+<script>
+    $(
+        $.ajax({
+            url: baseUrl + "v1/index/show_blogs",
+            type: "get",
+            dataType: "json",
+            success: function (res) {
+                if (res.code === 200) {
+                    console.log(res.data);
+                } else {
+                    swal("非常抱歉", res.error, "error");
+                }
+            }
+        })
+    )
+</script>
+
+<script>
+
+    // <span class="label label-success">原创</span>
+    // <span class="label label-default">Default</span>
+    // <span class="label label-primary">Primary</span>
+    // <span class="label label-success">Success</span>
+    // <span class="label label-info">Info</span>
+    // <span class="label label-warning">Warning</span>
+    // <span class="label label-danger">Danger</span>
+
+    $("#pymara-logo").on("click", function () {
+        var title = "我成功啦";
+        var author = "陈独秀";
+        var link = "#";
+        var like = 0;
+        var read = 16;
+        var comment = 666;
+        var tags = "&nbsp;";
+
+
+        let html = "<div class=\"one-blogs-box\"><table>\n" +
+            "<tr>\n" +
+            "    <td rowspan=\"2\" class=\"head-img-box-TD\">\n" +
+            "    <img src=\"../static/index/img/head/h-04.jpg\" class=\"img-circle img-responsive\" alt=\"\"></td>\n" +
+            "    <td><a href=\"" + link + "\"><p class=\"blog-title-P\">" + title + "</p></a></td>\n" +
+            "</tr>\n" +
+            "<tr><td><p class=\"blog-author-P\">" + author + "</p></td></tr>\n" +
+            "<tr><td></td><td id=\"show-tags-box-TD\">" + tags + "</td></tr>\n" +
+            "<tr><td></td>\n" +
+            "    <td class=\"blogs-tag-box-TD\">\n" +
+            "        <span><i class=\"glyphicon glyphicon-thumbs-up\"></i><span>1</span></span>\n" +
+            "        <span><i class=\"glyphicon glyphicon-eye-open\"></i><span>1</span></span>\n" +
+            "        <span><i class=\"glyphicon glyphicon-comment\"></i><span>1</span></span>\n" +
+            "    </td></tr></table></div>";
+        $(".blogs-box").append(html)
+    })
+</script>
+<script>
+    $('.disabled').prop('disabled', 'disabled')
+</script>
+<!--加载首页推荐-->
+<script>
+    function get_blog(page) {
+        if (loading) {
+            loading = false
+            $.ajax({
+                url: BLOGURL + 'rank/featured/' + page,
+                type: 'get',
+                datatype: 'json',
+                success: function (res) {
+                    if (res.code === 200) {
+                        $.each(res.data, function (index, obj) {
+                                //判断是否为博客
+                                if (Boolean(parseInt(obj.is_blog))) {
+                                    html = '<li>\n' +
+                                        '    <a id="' + obj.id + '" href="' + BLOGHREF + 'detail.html?blog_id=' + obj.id + '" class="title" target="_blank" ><i class="log"></i>' + obj.title + '</a>\n' +
+                                        '    <span class="abstract">' + obj.abstract + ' </span>\n' +
+                                        '    <a href="user/detail.html?user_id=' + obj.user_id + '" class="name"><img src="../media/avatar/' + obj.avatar + '" class="img-circle">' + obj.username + '</a>\n' +
+                                        '    <span class="history"><i class="glyphicon glyphicon-thumbs-up praise">' + obj.praise + '</i><i\n' +
+                                        '            class="glyphicon glyphicon-eye-open">' + obj.browse + '</i><i\n' +
+                                        '            class="glyphicon glyphicon-comment to_comment">' + obj.comment + '</i></span>\n' +
+                                        '</li>'
+                                } else {
+                                    html = '<li>\n' +
+                                        '    <a id="' + obj.id + '" href="' + obj.url + '" class="title" target="_blank" ><i class="log"></i>' + obj.title + '</a>\n' +
+                                        '    <span class="abstract"> ' + obj.abstract + '</span>\n' +
+                                        '    <a href="user/detail.html?user_id=' + obj.user_id + '" class="name"><img src="../media/avatar/' + obj.avatar + '" class="img-circle">' + obj.username + '</a>\n' +
+                                        '    <span class="_history"><i class="glyphicon glyphicon-thumbs-up praise">' + obj.praise + '</i><i\n' +
+                                        '            class="glyphicon glyphicon-eye-open">' + obj.browse + '</i><i\n' +
+                                        '            class="glyphicon glyphicon-comment">' + obj.comment + '</i></span>\n' +
+                                        '</li>'
+                                }
+                                $('.blogs-box').append(html)
+                                if (obj.original === '0') {
+                                    $('#' + obj.id + '>.log').text('外部')
+                                } else {
+                                    $('#' + obj.id + '>.log').text('原创')
+                                }
+                            }
+                        )
+                    } else {
+                        $('.null').addClass('no_search_results')
+                    }
+                    sessionStorage.setItem('featured_page', parseInt(page) + 1)
+                    loading = true
+                }
+            })
+        }
+
+    }
+
+    sessionStorage.setItem('featured_page', 0)
+    page = window.sessionStorage.getItem('featured_page')
+    loading = true
+    get_blog(page)
+
+</script>
+<script>
+    $(window).scroll(function () {
+        var scrollerh = $(document).scrollTop();
+        var viewbody = $(window).height();
+        var allbody = $(document).height();
+        //判断位置
+        if (scrollerh + viewbody > allbody - 200) {
+            page = sessionStorage.getItem('featured_page')
+            get_blog(page)
+        }
+    })
+</script>
+</body>
+</html>

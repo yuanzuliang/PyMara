@@ -1,0 +1,348 @@
+
+.content {
+    padding-top: 20px;
+}
+
+/* 小图标 */
+.home_log, .rank_log {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    position: relative;
+    top: 14px;
+    margin-right: 5px;
+    margin-left: 18px;
+    border-radius: 50%;
+    background-color: #ff5c7c;
+}
+
+.rank_log {
+    background-color: #00a1d6;
+
+}
+
+.home_log > span, .rank_log > span {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    color: #fff;
+}
+
+.home_log:hover, .rank_log:hover {
+    cursor: pointer;
+}
+
+
+/* 搜索框 */
+.search_input {
+    display: inline-block;
+    width: 70%;
+    margin-left: 10px;
+}
+
+.search_log {
+    right: 1%;
+}
+
+/* 悬停样式 */
+.search_log:hover {
+    cursor: pointer;
+    background-color: #2e6da4;
+}
+
+/* 选中样式 */
+.select {
+    border-bottom: 3px solid #00a1d6;
+    color: #00a1d6
+}
+
+/* 去除a标签样式 */
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+/* 高级选项悬停样式 */
+#options td:hover {
+    cursor: pointer;
+    color: #00a1d6
+}
+
+/* 高级选项选中样式 */
+#options_select {
+    background-color: #00a1d6;
+    color: #ffffff;
+}
+
+/* 高级选项样式 */
+#options td {
+    display: inline-block;
+    width: 80px;
+    padding-top: 5px;
+    margin-left: 2px;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+}
+
+/* 高级选项格式调整 */
+#options #sec, #options #arch {
+    margin-left: 88px;
+}
+
+.table {
+    border-top: solid 1px #ccc;
+    margin-top: 35px;
+    margin-bottom: 0;
+}
+
+/* 清除列表样式 */
+.blog ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog ul {
+    display: inline-block;
+}
+
+/* li样式 */
+.info li {
+    width: 720px;
+    border-top: solid 1px #ccc;
+    height: 100px;
+    margin: 15px;
+    position: relative;
+}
+
+/* 头像 */
+.info img {
+    width: 24px;
+    height: 24px;
+    /* position:absolute;left: 1px;top: 3px; */
+}
+
+/* 名字 */
+.info .name {
+    position: absolute;
+    left: 1px;
+    bottom: 3px;
+    color: #99a2aa;
+    font-size: 12px;
+
+}
+
+.info .name:hover {
+    color: #00a1d6;
+
+}
+
+/* 标题 */
+.title {
+    position: absolute;
+    left: 1px;
+    top: 3px;
+    font: 12px Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+     width: 700px;
+    /*超出部分用省略号*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.title:hover {
+    color: #00a1d6;
+}
+
+/* 清除a标签样式 */
+a:visited {
+    text-decoration: none;
+
+}
+
+/* 内容 */
+.abstract {
+    font-size: 12px;
+    color: #99a2aa;
+    position: absolute;
+    left: 1px;
+    top: 40px;
+    width: 700px;
+    /*超出部分用省略号*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 排名 */
+.rank {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: #b8c0cc;
+}
+
+/* 点赞收藏评论 */
+.history {
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+}
+
+.history > i {
+    padding-right: 25px;
+}
+
+.history > i:hover {
+    cursor: pointer;
+    color: #00a1d6;
+}
+
+/*红色选中状态*/
+.history .red_select {
+    color: #ff5c7c;
+}
+
+.history .red_select:hover {
+    color: #ff5c7c;
+}
+
+/*搜索记录*/
+.suggest {
+    position: relative;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+/*标题和图标*/
+.suggest span {
+    font-size: 24px;
+}
+
+/*图标*/
+.suggest .record_log, .hot_search_log {
+    color: #f489ad;
+}
+
+
+.suggest > .hot_search, .records {
+    display: inline-block;
+    width: 300px;
+}
+
+/*标题*/
+.suggest .hot_search_title, .record_title {
+    position: absolute;
+    top: 20px;
+    margin-left: 100px;
+}
+
+.suggest ul {
+    display: inline-block;
+    position: absolute;
+    top: 50px;
+}
+
+.suggest li {
+    cursor: pointer;
+}
+
+/*分页*/
+/*.paging {*/
+/*    position: absolute;*/
+/*    left: 260px;*/
+/*}*/
+
+
+/*搜索无结果图片*/
+.no_search_results {
+    /*position: absolute;*/
+    background: url(//s1.hdslb.com/bfs/static/jinkela/search/asserts/no-data.png) no-repeat 50% 50%;
+    width: 730px;
+    height: 400px;
+}
+
+/*排序小图标*/
+/*#rank{*/
+/*    position: absolute;top: 160px;right: 10px;*/
+/*}*/
+/*#rank:hover{*/
+/*    cursor: pointer;*/
+/*}*/
+/*.rocket-con {*/
+/*	position: fixed;*/
+/*	background: url(//static.hdslb.com/bl2se/images/rocket_top.png);*/
+/*	width: 150px;*/
+/*	height: 175px;*/
+/*	cursor: pointer;*/
+/*	z-index: 99;*/
+/*	bottom: 0;*/
+/*	left: 50%;*/
+/*	margin-left: 490px;*/
+/*}*/
+/*.fly {*/
+/*	animation: fly .4s steps(1) infinite;*/
+/*	background-image: url(//static.hdslb.com/bl2se/images/rocket_frame.png)*/
+/*}*/
+
+
+/*小火箭*/
+.rocket-con {
+    position: fixed;
+    background: url(//static.hdslb.com/bl2se/images/rocket_top.png);
+    width: 150px;
+    height: 175px;
+    cursor: pointer;
+    z-index: 99;
+    bottom: 0;
+    left: 50%;
+    margin-left: 490px
+}
+
+.fly {
+    animation: fly .4s steps(1) infinite;
+    background-image: url(//static.hdslb.com/bl2se/images/rocket_frame.png)
+}
+
+@keyframes fly {
+    0% {
+        background-position-x: 0
+    }
+    25% {
+        background-position-x: -150px
+    }
+    50% {
+        background-position-x: -300px
+    }
+    75% {
+        background-position-x: -450px
+    }
+    to {
+        background-position-x: -600px
+    }
+}
+
+
+
+.box {
+    background: #f5f5f5;
+    opacity: 0.9;
+    position: relative;
+}
+.backimg {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+}
+
+

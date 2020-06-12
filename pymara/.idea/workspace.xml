@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2522a077-ad62-4bc8-9a8d-b5415eefacbd" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cVqhaVmvvATJcSmq15M7Or2mbt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/WEB/PYMARA" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/img/log" />
+      <recent name="$PROJECT_DIR$/static/user/user" />
+      <recent name="$PROJECT_DIR$/static/user" />
+      <recent name="$PROJECT_DIR$/static/img/back" />
+      <recent name="$PROJECT_DIR$/static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/img" />
+      <recent name="$PROJECT_DIR$/media" />
+      <recent name="$PROJECT_DIR$/static/user/user" />
+      <recent name="$PROJECT_DIR$/static/user/details" />
+      <recent name="$PROJECT_DIR$/static/blog" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2522a077-ad62-4bc8-9a8d-b5415eefacbd" name="Default Changelist" comment="" />
+      <created>1590624227699</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590624227699</updated>
+      <workItem from="1590624230970" duration="24260000" />
+      <workItem from="1590707591770" duration="3247000" />
+      <workItem from="1590747608401" duration="7708000" />
+      <workItem from="1590797370239" duration="5282000" />
+      <workItem from="1590916533962" duration="7945000" />
+      <workItem from="1590966977067" duration="1745000" />
+      <workItem from="1591108012784" duration="94000" />
+      <workItem from="1591108341517" duration="2446000" />
+      <workItem from="1591146635308" duration="15672000" />
+      <workItem from="1591255956373" duration="4809000" />
+      <workItem from="1591269020041" duration="822000" />
+      <workItem from="1591349614082" duration="5542000" />
+      <workItem from="1591436222460" duration="12549000" />
+      <workItem from="1591513355096" duration="22152000" />
+      <workItem from="1591576938412" duration="44772000" />
+      <workItem from="1591664700417" duration="13483000" />
+      <workItem from="1591697917509" duration="9406000" />
+      <workItem from="1591708978049" duration="7000" />
+      <workItem from="1591709224786" duration="2990000" />
+      <workItem from="1591750418958" duration="964000" />
+      <workItem from="1591757224531" duration="621000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="580" y="278" width="380" height="369" key="FileChooserDialogImpl" timestamp="1591759950578">
+      <screen x="88" y="27" width="1592" height="1023" />
+    </state>
+    <state x="536" y="263" width="424" height="491" key="FileChooserDialogImpl/0.368.1680.1050/1680.0.1366.768@0.368.1680.1050" timestamp="1591708903872" />
+    <state x="776" y="261" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.955@67.27.1853.955" timestamp="1590967124391" />
+    <state x="580" y="278" width="380" height="484" key="FileChooserDialogImpl/88.27.1592.1023@88.27.1592.1023" timestamp="1591759950578" />
+    <state x="2102" y="188" width="380" height="369" key="FileChooserDialogImpl/88.395.1592.1023/1680.0.1366.768@1680.0.1366.768" timestamp="1591708283776" />
+    <state x="1003" y="646" key="FileChooserDialogImpl/88.395.2958.1023@88.395.2958.1023" timestamp="1591108963643" />
+    <state x="547" y="251" width="672" height="678" key="search.everywhere.popup" timestamp="1591588556199">
+      <screen x="88" y="27" width="1592" height="1023" />
+    </state>
+    <state x="547" y="251" width="672" height="678" key="search.everywhere.popup/88.27.1592.1023@88.27.1592.1023" timestamp="1591588556199" />
+    <state x="368" y="446" width="490" height="192" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1591148587294">
+      <screen x="88" y="27" width="1592" height="1023" />
+    </state>
+    <state x="368" y="446" width="490" height="192" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/88.27.1592.1023@88.27.1592.1023" timestamp="1591148587294" />
+    <state x="609" y="814" width="540" height="192" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/88.395.2958.1023@88.395.2958.1023" timestamp="1591108091492" />
+  </component>
+</project>

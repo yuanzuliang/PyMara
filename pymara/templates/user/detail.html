@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户详情</title>
+    <script src="../../static/tools/js/jquery.min.js"></script>
+    <script src="../../static/tools/js/bootstrap.min.js"></script>
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <script src="../../static/tools/js/tools.js"></script>
+    <script src="../../static/tools/js/settings.js"></script>
+    <link rel="stylesheet" href="../../static/tools/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../static/user/details/css/detail.css">
+</head>
+<body>
+<img src="../../static/img/back/back_0.png" class="backimg">
+<a href="#post_comment"><img src="../../static/img/log/message.jpg" class="message img-circle"></a>
+
+<div class="container-fluid">
+    <header>
+        <nav class="navbar navbar-default header-font-size navbar-fixed-top">
+            <div class="container-fluid header-box">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <img id="pymara-logo" src="../../static/index/img/jpg/logo.jpg" title="PyMara博客" alt="Logo">
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navigation-bar-ul">
+                        <!-- 导航栏标签 -->
+                        <!--
+                        <li class="hover-bg-color-change">
+                            <a href="#">首页</a>
+                        </li>导航栏标签 -->
+
+                        <li class="search-input-li">
+                            <!--　搜索框　-->
+                            <div class="input-group search-box">
+                                <input type="text" id="search-input" class="form-control navbar-btn"
+                                       placeholder="Search ...">
+                                <span class="input-group-btn">
+                                    <button id="search-btn" class="btn btn-default navbar-btn" type="button">&nbsp;搜&nbsp;索&nbsp;</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </li>
+
+                    </ul>
+                    <ul id="judge-login-no" class="nav navbar-nav navbar-right myself-UL">
+
+                        <li class="hover-bg-color-change"><a href="../user/login.html">登录</a></li>
+                        <li class="hover-bg-color-change"><a href="../user/register.html">注册</a></li>
+
+                        <li class="head-portrait-img-li">
+                            <img id="head-IMG" src="../../static/index/img/head/default.jpg" title="您还没有登录哦"
+                                 class="head-portrait-img" alt="头像">
+                        </li>
+                    </ul>
+
+                    <ul id="judge-login-ok" class="nav navbar-nav navbar-right myself-UL">
+
+                        <li class="dropdown">
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                <i class="glyphicon glyphicon-bell"></i><span class="badge pull-right"
+                                                                              id="total-num"></span>
+                            </a>
+                            <ul class="dropdown-menu myself-ul-font-size">
+                                <li>
+                                    <a href="#">
+                                        公告<span class="badge pull-right" id="gonggao-num">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        评论<span class="badge pull-right" id="pinglun-num">8</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        关注<span class="badge pull-right" id="guanzhu-num"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        点赞<span class="badge pull-right" id="dianzan-num"></span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        私信<span class="badge pull-right" id="sixin-num"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        系统通知<span class="badge pull-right" id="xitong-num">2</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="myself-a" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="glyphicon glyphicon-tower vip-logo-i"></i>&nbsp;&nbsp;我的<span
+                                    class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu myself-ul-font-size">
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;我的关注
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-star"></i>&nbsp;&nbsp;我的收藏
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="info.html">
+                                        <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;个人中心
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;账号设置
+                                    </a>
+                                </li>
+
+                                <li role="separator" class="divider"></li>
+
+                                <li>
+                                    <a href="../blog/forms.html">
+                                        <i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;创作博客
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../user/management.html">
+                                        <i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;管理博客
+                                    </a>
+                                </li>
+
+                                <li role="separator" class="divider"></li>
+
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;&nbsp;我的订单
+                                    </a>
+                                </li>
+
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-yen"></i>&nbsp;&nbsp;我的钱包
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-question-sign"></i>&nbsp;&nbsp;帮助
+                                    </a>
+                                </li>
+                                <li>
+                                    <div id='exit-login' class='myself-box-DIV'>
+                                        <i class="glyphicon glyphicon-log-out"></i>&nbsp;&nbsp;退出
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="head-portrait-img-li">
+                            <img id="head-IMG-2" src="../../static/index/img/head/h-06.jpg" class="head-portrait-img"
+                                 alt="头像">
+                        </li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+    <div class="box" id="box">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 user_info">
+            <table class="table">
+                <tr>
+                    <td class="active avatar"><img src="" alt=""></td>
+                    <td class="active name">???</td>
+                </tr>
+                <tr>
+                    <td class="active">原创</td>
+                    <td class="active">浏览</td>
+                    <td class="active">排名</td>
+                </tr>
+                <tr>
+                    <td class="active original">?</td>
+                    <td class="active browse">?</td>
+                    <td class="active rank">?</td>
+                </tr>
+                <tr>
+                    <td class="active">全部</td>
+                    <td class="active">点赞</td>
+                    <td class="active">评论</td>
+                </tr>
+                <tr>
+                    <td class="active all_blog">?</td>
+                    <td class="active praise">?</td>
+                    <td class="active comments">?</td>
+                </tr>
+            </table>
+
+            <!-- 轮播图 -->
+            <div id="slideshow-img">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="">
+                                <img src="../../static/index/img/jpg/a-01.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+                                程序员的安静时光
+                                <!-- 这里可以加提示文字　下同 -->
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../../static/index/img/jpg/a-02.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../../static/index/img/jpg/a-03.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../../static/index/img/jpg/a-04.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href="">
+                                <img src="../../static/index/img/jpg/a-05.jpg" alt="...">
+                            </a>
+                            <div class="carousel-caption">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- 轮播图 -->
+
+        </div><!-- 左边个人信息阅读推荐 -->
+        <div class="col-md-6 blog_info">
+            <h2 class="top">最新博客</h2>
+        </div>
+        <div class="col-md-2 user_info"></div>
+        <div class="col-md-1"></div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    $("#judge-login-no").show();
+    $("#judge-login-ok").hide();
+
+    // 用户退出
+    function userExitLogin() {
+        $("#exit-login").click(function () {
+            window.localStorage.clear();
+            $("#judge-login-no").show();
+            $("#judge-login-ok").hide();
+        })
+    }
+
+    // 判断页面的span标签中是否有消息数量
+    function judgeNumber(str_num) {
+        if (str_num) {
+            return parseInt(str_num);
+        } else {
+            return 0
+        }
+    }
+
+    function getTotalNum() {
+        var gonggaoNum = judgeNumber($("#gonggao-num").html());
+        var pinglunNum = judgeNumber($("#pinglun-num").html());
+        var guanzhuNum = judgeNumber($("#guanzhu-num").html());
+        var dianzanNum = judgeNumber($("#dianzan-num").html());
+        var sixinNum = judgeNumber($("#sixin-num").html());
+        var xitongNum = judgeNumber($("#xitong-num").html());
+        var totalNum = gonggaoNum + pinglunNum + guanzhuNum + dianzanNum + sixinNum + xitongNum;
+        $("#total-num").html(totalNum);
+    }
+
+    $(function () {
+        $.ajax({
+            url: baseUrl + "v1/index/judge_login",
+            type: "post",
+            dataType: "json",
+            success: function (res) {
+                if (res.code === 200) {
+                    // swal(res.uname, "欢迎访问本网站", "success");
+                    $("#judge-login-no").hide();
+                    $("#judge-login-ok").show();
+                    $("#head-IMG-2").prop("title", res.uname);
+                    getTotalNum();
+                    userExitLogin();
+                } else if (res.code === 403) {
+                    $("#judge-login-no").show();
+                    $("#judge-login-ok").hide();
+                } else if (res.code === 444) {
+                    swal("您的账号被限制", "请联系工作人员", "error")
+                }
+            },
+            beforeSend: function (request) {
+                request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+            }
+        })
+    })
+
+    function GetRequest() {
+        url = location.search; //获取url中"?"符后的字串
+        theRequest = Object();
+        if (url.indexOf("?") !== -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    function GetUserInfo(user_id) {
+        $.ajax({
+            url: BLOGURL + 'details/' + user_id + '/user_detail',
+            type: 'get',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code === 200) {
+                    $('.avatar').html('<img src="../../media/avatar/' + res.data.avatar + '" class="img-circle" alt="">')
+                    $('.name').html(res.data.username)
+                    $('.original').html(res.data.original)
+                    $('.comments').html(res.data.comments)
+                    $('.praise').html(res.data.praise)
+                    $('.all_blog').html(res.data.all_blog)
+                    $('.browse').html(res.data.browse)
+                    if (res.data.rank) {
+                        $('.rank').html(res.data.rank)
+                    } else {
+                        $('.rank').html('100+')
+                    }
+                    $.each(res.data.newblog, function (index, obj) {
+                        $('.newblog').append('<tr><td class="active"><a href="' + BLOGHREF + "detail.html?blog_id=" + obj[0] + '">' + obj[1] + '</a></td></tr>')
+                    })
+                } else {
+                    swal('', '用户不存在', 'error')
+                    setTimeout(function () {
+                        location.href = HREF + 'index.html'
+                    }, 1000)
+                }
+            }
+        })
+    }
+
+    function GetBlogInfo(user_id) {
+        $.ajax({
+            url: BLOGURL + 'details/' + user_id + '/blog_list',
+            type: 'get',
+            dataType: 'json',
+            success: function (res) {
+                if (res.code === 200) {
+                    $.each(res.data, function (index, obj) {
+                        //判断是否为博客
+                        if (Boolean(parseInt(obj.is_blog))) {
+                            html = '<li id='+obj.id+'>\n' +
+                                '    <a href="../blog/detail.html?blog_id='+ obj.id + '" class="title" target="_blank" >' + obj.title + '</a>\n' +
+                                '    <span class="abstract">' + obj.abstract + '</span>\n' +
+                                '    <a href="../user/detail.html?user_id='+obj.user_id+'" class="name"><img src="../../media/avatar/' + obj.avatar + '" class="img-circle">' + obj.username + '</a>\n' +
+                                '    <span class="history"><i class="glyphicon glyphicon-thumbs-up praise">' + obj.praise + '</i><i\n' +
+                                '            class="glyphicon glyphicon-eye-open">' + obj.browse + '</i><i\n' +
+                                '            class="glyphicon glyphicon-comment comment">' + obj.comment + '</i></span>\n' +
+                                '</li>'
+                        } else {
+                            html = '<li id='+obj.id+'>\n' +
+                                '    <a href="' + obj.url + '" class="title" target="_blank" >' + obj.title + '</a>\n' +
+                                '    <span class="abstract"> ' + obj.abstract + '......</span>\n' +
+                                '    <a href="../user/detail.html?user_id='+obj.user_id+'" class="name"><img src="' + URL + obj.avatar + '" class="img-circle">' + obj.username + '</a>\n' +
+                                '    <span class="history"><i class="glyphicon glyphicon-thumbs-up praise">' + obj.praise + '</i><i\n' +
+                                '            class="glyphicon glyphicon-eye-open">' + obj.browse + '</i><i\n' +
+                                '           class="glyphicon glyphicon-comment comment" >' + obj.comment + '</i></span>\n' +
+                                '</li>'
+                        }
+                        $('.blog_info').append(html)
+                    })
+                } else {
+                    swal('', '用户不存在', 'error')
+                    setTimeout(function () {
+                        // location.href = HREF + 'index.html'
+                    }, 1000)
+                }
+            }
+        })
+    }
+</script>
+<script>
+    user_id = GetRequest().user_id
+    sessionStorage.setItem('detail_user_id', user_id)
+    if (user_id) {
+        GetUserInfo(user_id)
+        GetBlogInfo(user_id)
+    } else {
+        swal('', '你访问的用户不存在', 'error')
+        setTimeout(function () {
+            location.href = HREF + 'index.html'
+        }, 1000)
+    }
+</script>
+<script>
+    $(
+        $('#pymara-logo').on('click', function () {
+            location.href = htmlUrl + 'pymara/templates/index.html'
+        }),
+        $('.blog_info').on('click','.history',function () {
+            location.href = BLOGHREF+ 'detail.html?blog_id='+$(this).parent().prop('id')
+        }),
+
+    $("#search-btn").click(function () {
+        var inputStr = $("#search-input").val();
+        if (inputStr) {
+            location.href = BLOGHREF + 'search.html?keyword=' + inputStr
+        } else {
+            location.href = BLOGHREF + 'search.html'
+        }
+
+    }),
+
+    )
+</script>
+</html>

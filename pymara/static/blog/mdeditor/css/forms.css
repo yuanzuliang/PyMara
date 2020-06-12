@@ -1,0 +1,70 @@
+
+.wmd-wrapper ul {
+    margin-left: 0 !important;
+}
+
+.wmd-wrapper ul li {
+    list-style: disc !important;
+}
+
+.wmd-wrapper ul ul li {
+    list-style: circle !important;
+}
+
+.wmd-wrapper h1,
+.wmd-wrapper h2,
+.wmd-wrapper h3,
+.wmd-wrapper h4,
+.wmd-wrapper h5,
+.wmd-wrapper h6 {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+.wmd-wrapper h2,
+.wmd-wrapper h3,
+.wmd-wrapper h4 {
+    padding: 0 !important;
+}
+
+.wmd-wrapper h5 {
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    font-size: 1em !important;
+}
+
+.wmd-wrapper h6 {
+    font-size: 1em !important;
+    color: #777 !important;
+}
+
+.mybutton {
+    position: fixed;
+    right: 325px;
+}
+
+nav {
+    position: relative;
+}
+
+.container {
+    margin-left: 40px;
+}
+
+.article {
+    width: 80%;
+}
+
+.pymara_logo {
+    position: absolute;
+    z-index: auto;
+    right: 50px;
+    top: 10px;
+}
+
+.cont-right-box {
+    position: absolute;
+    right: 10px;
+    top: 150px;
+
+}

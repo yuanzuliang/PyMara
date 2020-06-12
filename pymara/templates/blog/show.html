@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章展示页面</title>
+    <link href='../../static/blog/mdeditor/css/editormd.min.css' rel="stylesheet">
+    <link href='../../static/blog/mdeditor/css/editormd.preview.css' rel="stylesheet">
+</head>
+<body>
+<div> title: <span id="title"></span></div>
+<div> content:
+    <div id="content"></div>
+</div>
+<script src='../../static/blog/mdeditor/js/jquery.min.js'></script>
+<script src='../../static/blog/mdeditor/js/editormd.min.js'></script>
+<script src='../../static/blog/mdeditor/js/lib/marked.min.js'></script>
+<script src='../../static/blog/mdeditor/js/lib/prettify.min.js'></script>
+<script src='../../static/blog/mdeditor/js/lib/raphael.min.js'></script>
+<script src='../../static/blog/mdeditor/js/lib/underscore.min.js'></script>
+<script src='../../static/blog/mdeditor/js/lib/sequence-diagram.min.js'></script>
+<script src='../../static/blog/mdeditor/js/lib/flowchart.min.js'></script>
+<script src='../../static/blog/mdeditor/js/lib/jquery.flowchart.min.js'></script>
+<script src='../../static/blog/mdeditor/js/settings.js'></script>
+<script>
+    $(function () {
+        var url = window.location.href;
+        var main_url = htmlUrl + 'templates/blog/show.html?blog_id='
+        var blog_id = url.replace(main_url, "")
+        $.ajax({
+            type: 'get',
+            url: baseUrl + 'v1/blog/display/?blog_id=' + blog_id,
+            datatype: JSON,
+            success: function (res) {
+                if (res.code === 200) {
+                    alert('跳转到呈现页');
+                    $('#title').html(res.title);
+                    $('#content').html("<textarea>" + res.content + "</textarea>");
+                    // $('textarea').style("visibility=visible");
+                    editormd.markdownToHTML("content", {
+                        //htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                        emoji: true,
+                        taskList: true,
+                        tex: true,  // 默认不解析
+                        flowChart: true,  // 默认不解析
+                        sequenceDiagram: true,  // 默认不解析
+                    });
+
+                    $(".reference-link").each(function (i, obj) {
+                        console.log(obj)
+                    })
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

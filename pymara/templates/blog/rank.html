@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排行</title>
+    <script src="../../static/blog/search/js/jquery.min.js"></script>
+    <script src="../../static/blog/search/js/bootstrap.min.js"></script>
+    <script src="../../static/tools/js/settings.js"></script>
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <link rel="stylesheet" href="../../static/blog/search/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/blog/search/css/rank.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+
+</head>
+<body>
+<img src="../../static/img/back/back_0.png" class="backimg">
+<div class="container ">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 box">
+        <div class="content">
+
+            <!-- 搜索栏 -->
+            <div class="home_log"><span class="glyphicon glyphicon-home"></span></div>
+            <div class="rank_log"><span class="glyphicon glyphicon-stats"></span></div>
+            |
+            <input type="text" class="form-control search_input" id="keyword">
+            <button type="button" class="btn btn-info glyphicon glyphicon-search search_log" id="search"></button>
+            <!-- 排行 -->
+            <div class="table">
+                <table class="table" id="list">
+                    <tr>
+                        <td class="select" id="default"><a href="#">全站榜</a></td>
+                        <td id='original'><a href="#">原创榜</a></td>
+                        <td id='hot'><a href="#">热门榜</a></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- 搜索内容 -->
+            <div class="blog">
+                <ul class="info">
+                </ul>
+            </div>
+            <div class="null"></div>
+        </div>
+        <div class="foot">
+            <div class="rocket-con"></div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<script>
+    function get_blog_info() {
+        if (blog_loading) {
+            //瀑布流控制器
+            blog_loading = false
+            type = $('.select').prop('id')
+            if (sessionStorage.getItem('rank_type') === type) {
+                page = $('.info').children().length
+                console.log(page)
+            } else {
+                page = 0
+                $('.info').html('')
+                sessionStorage.setItem('rank_type', type)
+            }
+            if (page < 100) {
+                $.ajax({
+                    url: URL + 'v1/blog/rank/' + type + '/' + page,
+                    type: 'get',
+                    success: function (res) {
+                        if (res.code === 200) {
+                            if (typeof (res.data) == 'undefined') {
+                                $('.null').addClass('no_search_results')
+                            } else {
+                                $.each(res.data, function (index, obj) {
+                                    //判断是否为博客
+                                    if (Boolean(parseInt(obj.is_blog))) {
+                                        html = '<li>\n' +
+                                            '    <a href="detail.html?blog_id='+ obj.id + '" class="title" target="_blank" >' + obj.title + '</a>\n' +
+                                            '    <span class="abstract">' + obj.abstract + ' </span>\n' +
+                                            '    <a href="../user/detail.html?user_id='+obj.user_id+'" class="name"><img src="../../media/avatar/' + obj.avatar + '" class="img-circle">' + obj.username + '</a>\n' +
+                                            '    <span class="history"><i class="glyphicon glyphicon-thumbs-up praise">' + obj.praise + '</i><i\n' +
+                                            '            class="glyphicon glyphicon-eye-open">' + obj.browse + '</i><i\n' +
+                                            '            class="glyphicon glyphicon-comment">' + obj.comment + '</i></span>\n' +
+                                            '</li>'
+                                    } else {
+                                        html = '<li>\n' +
+                                            '    <a href="' + obj.url + '" class="title" target="_blank" >' + obj.title + '</a>\n' +
+                                            '    <span class="abstract"> ' + obj.abstract + '</span>\n' +
+                                            '    <a href="../user/detail.html?user_id='+obj.user_id+'" class="name"><img src="../../media/avatar/' + obj.avatar + '" class="img-circle">' + obj.username + '</a>\n' +
+                                            '    <span class="history"><i class="glyphicon glyphicon-thumbs-up praise">' + obj.praise + '</i><i\n' +
+                                            '            class="glyphicon glyphicon-eye-open">' + obj.browse + '</i><i\n' +
+                                            '            class="glyphicon glyphicon-comment">' + obj.comment + '</i></span>\n' +
+                                            '</li>'
+                                    }
+                                    $('.info').append(html)
+                                })
+                                if (res.data.length < 10) {
+                                    $('.null').addClass('no_search_results')
+                                }
+                            }
+                        } else {
+                            //TODO 报错
+                            swal('访问出错啦',res.error,'success')
+                        }
+                        blog_loading = true
+                    }
+                })
+            } else {
+                //  以取出全部数据
+                $('.null').addClass('no_search_results')
+            }
+
+        }
+    }
+
+</script>
+<script>
+    $(
+        blog_loading = true,
+        get_blog_info()
+    )
+</script>
+
+
+<script>
+    $(
+        $('#list td').on('click', function () {
+            if (!$(this).hasClass('select')) {
+                $('#list td').removeClass('select')
+                $(this).addClass('select')
+                get_blog_info()
+            }
+            blog_loading = true
+        }),
+        $(window).scroll(function () {
+            var scrollerh = $(document).scrollTop();
+            var viewbody = $(window).height();
+            var allbody = $(document).height();
+            //判断位置
+            if (scrollerh + viewbody > allbody - 200) {
+                get_blog_info()
+            }
+        }),
+        $('#search').on('click', function () {
+            keyword = $('#keyword').val()
+            if (keyword) {
+                location.href = BLOGHREF + 'search.html?keyword=' + keyword
+            } else {
+                location.href = BLOGHREF + 'search.html'
+            }
+        }),
+        //小火箭
+        $('.rocket-con').mouseover(function () {
+            $('.rocket-con').addClass('fly')
+        }).mouseout(function () {
+            $('.rocket-con').removeClass('fly')
+        }).on('click', function () {
+            scrollTo(0, 0);
+        }),
+        $('.home_log').on('click', function () {
+            location.href = HREF + 'index.html'
+        })
+    )
+</script>
+</body>
+</html>

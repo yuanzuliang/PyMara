@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>发布页面</title>
+    <link href="../../static/blog/mdeditor/css/editormd.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/blog/mdeditor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/blog/mdeditor/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../static/blog/mdeditor/css/forms.css">
+    <link rel="stylesheet" href="../../static/tools/css/sweetalert2.min.css">
+
+    <script src="../../static/tools/js/sweetalert2.js"></script>
+    <script type="text/javascript" src="../../static/blog/mdeditor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/blog/mdeditor/js/editormd.min.js"></script>
+    <script type="text/javascript" src="../../static/blog/mdeditor/js/bootstrap.min.js"></script>
+    <script src="../../static/blog/mdeditor/js/bootstrap-select.min.js"></script>
+    <script src="../../static/tools/js/settings.js"></script>
+    <script src="../../static/tools/js/tools.js"></script>
+    <script>check_login()</script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Title:</span>
+                        <input id='title' type="text" class="form-control col-lg-6" placeholder="title of your article"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <select class="selectpicker show-tick"
+                    data-live-search="true"
+                    id="topic"
+                    title="topic">
+                <option>python爬虫</option>
+                <option>python网络开发</option>
+                <option>python算法</option>
+                <option>python大数据</option>
+                <option>python人工智能</option>
+            </select>
+            <select class="selectpicker tags"
+                    id="tag"
+                    data-live-search="true"
+                    data-actions-box="true"
+                    multiple data-selected-text-format="count>2"
+                    title="tags">
+                <option value="python">python</option>
+                <option value="django">django</option>
+                <option value="web">web</option>
+                <option value="java">java</option>
+                <option value="other">other</option>
+            </select>
+        </div>
+    </nav>
+    <div class="pymara_logo">
+        <a href="../index.html"><img src="../../static/blog/mdeditor/images/logo_pymara.jpg" alt=""></a>
+    </div>
+    <div class="article">
+        <div class="wmd-wrapper" id="id_content-wmd-wrapper">
+            <textarea cols="40" id="id_content" name="content" rows="10" required></textarea>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        $(function () {
+            editormd("id_content-wmd-wrapper", {
+                watch: true, // 关闭实时预览
+                lineNumbers: true,
+                lineWrapping: false,
+                width: "90%",
+                height: 500,
+                placeholder: 'Gays ! start your performance',
+                // 当有多个mdeditor时，全屏后，其他mdeditor仍然显示，解决此问题。
+                onfullscreen: function () {
+                    this.editor.css("border-radius", 0).css("z-index", 9999);
+                },
+                onfullscreenExit: function () {
+                    this.editor.css({
+                        zIndex: 10,
+                        border: "1px solid rgb(221,221,221)"
+                    })
+                },
+                syncScrolling: "single",
+                path: "/pymara/static/blog/mdeditor/js/lib/",
+                // theme
+                theme: "default",
+                previewTheme: "default",
+                editorTheme: "default",
+
+                saveHTMLToTextarea: true, // editor.md 有问题没有测试成功
+                toolbarAutoFixed: true,
+                searchReplace: true,
+                emoji: true,
+                tex: true,
+                taskList: false,
+                flowChart: true,
+                sequenceDiagram: true,
+
+                // image upload
+                imageUpload: true,
+                image_folder: 'uploads',
+                imageFormats: ['jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF', 'png', 'PNG', 'bmp', 'BMP', 'webp', 'WEBP'],
+                imageUploadURL: baseUrl + "v1/blog/img/",
+                toolbarIcons: function () {
+                    return ['undo', 'redo', '|', 'bold', 'del', 'italic', 'quote', 'ucwords', 'uppercase', 'lowercase', '|', 'h1', 'h2', 'h3', 'h5', 'h6', '|', 'list-ul', 'list-ol', 'hr', '|', 'link', 'reference-link', 'image', 'code', 'preformatted-text', 'code-block', 'table', 'datetime', 'emoji', 'html-entities', 'pagebreak', 'goto-line', '|', 'help', 'info', '||', 'preview', 'watch', 'fullscreen']
+                },
+                onload: function () {
+                    // console.log('onload', this);
+                    //this.fullscreen();
+                    //this.unwatch();
+                    //this.watch().fullscreen();
+
+                    //this.setMarkdown("#PHP");
+                    //this.width("100%");
+                    //this.height(480);
+                    //this.resize("100%", 640);
+                }
+            });
+
+        });
+    </script>
+
+
+    <div class="mybutton">
+        <button type="button" id='submit' class="btn btn-primary">submit</button>
+        <button type="button" id='save' class="btn btn-info">save</button>
+        <button type="button" id='reset' class="btn btn-danger">reset</button>
+    </div>
+    <script>
+
+        $(function () {
+            $('.mybutton>button:not(#reset)').click(function () {
+
+                var str_cont = $('#id_content').val();
+                var str_title = $('#title').val();
+                var str_abs = $('#topic').val();
+                var str_tag = $('#tag').val();
+                var str_type = $(this).attr("id");
+
+                if(str_cont && str_title && str_abs && str_tag && str_type){
+                    $.ajax({
+                        type: 'post',
+                        url: baseUrl + 'v1/blog/editor/',
+                        // traditional: true, # ?
+                        data: JSON.stringify({
+                            content: str_cont,
+                            title: str_title,
+                            abstract: str_abs, // 摘要
+                            category: str_tag, // 分类
+                            blog_type: str_type
+                        }),
+                        success: function (res) {
+                            if (res.code === 200) {
+                                // 发布博客成功之后的跳转，需要修改 06.06 08:43
+                                window.location.href = htmlUrl + 'pymara/templates/blog/detail.html?blog_id=' + res.data.blog_id
+                            }else{
+                                swal(res.error, "非常抱歉", "error");
+                            }
+                        },
+                        beforeSend: function (request) {
+                            request.setRequestHeader("pymaratoken", window.localStorage.getItem("pymara_token"));
+                        }
+                    })
+                }else{
+                    swal("请填写完整博客信息", "非常抱歉", "error");
+                }
+
+            })
+        });
+
+        // 重置功能 可以把value清空, 但是页面显示仅标题改变, 可以实现功能,需要优化
+        $("#reset").on("click", function () {
+            $("#title").val("");
+            $("#topic").val("");
+            $("#tag").val("");
+            $("#id_content").val("");
+        })
+    </script>
+
+    <div class="cont-right-box">
+
+        <div>
+            <a href="">
+                <img class="advertising-img" src="../../static/blog/mdeditor/images/advertising-img-2.jpg" alt="广告位">
+            </a>
+        </div>
+
+        <!-- 轮播图 -->
+        <div id="slideshow-img">
+
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <a href="">
+                            <img src="../../static/blog/mdeditor/images/a-01.jpg" alt="...">
+                        </a>
+                        <div class="carousel-caption">
+                            <!-- 这里可以加提示文字　下同 -->
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <a href="">
+                            <img src="../../static/blog/mdeditor/images/a-02.jpg" alt="...">
+                        </a>
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <a href="">
+                            <img src="../../static/blog/mdeditor/images/a-03.jpg" alt="...">
+                        </a>
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <a href="">
+                            <img src="../../static/blog/mdeditor/images/a-04.jpg" alt="...">
+                        </a>
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <a href="">
+                            <img src="../../static/blog/mdeditor/images/a-05.jpg" alt="...">
+                        </a>
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div><!-- 轮播图 -->
+    </div><!--右侧推荐栏部分-->
+
+</body>
+</html>
+
